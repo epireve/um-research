@@ -1,269 +1,149 @@
-# Methodology for Research Supervisor Profile Collection
+# Methodology: Research Supervisor Profile Enrichment
 
-## Introduction
-
-This document outlines the systematic methodology employed for collecting, processing, and structuring data about research supervisors in the Software Engineering Department at the University of Malaya. The resulting dataset serves as a foundation for a system that helps graduate students identify and connect with potential research supervisors whose expertise and interests align with their own research goals.
+This document outlines the methodology used for collecting, processing, and enriching research supervisor profiles for the University of Malaya's Software Engineering Department.
 
 ## Data Collection
 
-### Data Sources
+### Sources
+- UMExpert platform
+- Scopus
+- Web of Science
+- ORCID
+- Google Scholar
+- Department websites
+- Researcher personal websites
 
-The profile information was collected from multiple authoritative sources to ensure comprehensive coverage:
+### Tools
+- Web scraping scripts
+- API integration (where available)
+- Manual collection (for sources without APIs)
+- `httpx` and BeautifulSoup libraries for HTML parsing
+- `pandas` for data management
 
-1. **University Platforms**
-   - Faculty directory pages
-   - Personal academic pages hosted on university domains
-   - Departmental research group listings
-   - University research repositories
-
-2. **Academic Databases**
-   - Google Scholar profiles
-   - Scopus author pages
-   - ORCID records
-   - Web of Science researcher profiles
-   - ResearchGate and Academia.edu profiles
-
-3. **Academic CVs and Personal Websites**
-   - Curriculum vitae documents (PDF, DOC)
-   - Personal academic websites
-   - Conference and journal websites listing committee members
-
-4. **Publication Records**
-   - Journal articles
-   - Conference proceedings
-   - Book chapters
-   - Technical reports
-   - Research grants and funding information
-
-### Collection Tools and Techniques
-
-The following tools and techniques were utilized for data collection:
-
-1. **Web Scraping Scripts**
-   - Custom Python scripts utilizing Requests and Selenium for automated data retrieval
-   - Rate-limited crawling to respect server limitations
-   - User-agent rotation to prevent IP blocking
-
-2. **HTML Parsing**
-   - BeautifulSoup4 for structured extraction from HTML pages
-   - XPath and CSS selectors for targeting specific elements
-   - Regular expressions for pattern-based extraction
-
-3. **PDF Extraction**
-   - PyPDF2 and pdfminer for text extraction from PDF documents
-   - OCR processing for scanned documents using Tesseract
-
-4. **API Integration**
-   - Scopus API for publication retrieval
-   - ORCID API for researcher identification
-   - CrossRef API for DOI resolution and metadata retrieval
-
-5. **Manual Collection**
-   - Directed information gathering for cases where automated methods were insufficient
-   - Verification of ambiguous or conflicting information
-   - Supplementation of missing data fields
+### Visual Data Collection
+- Profile photographs from department websites and UMExpert
+- Images from conference presentations and research activities
+- Base64-encoded images embedded in data sources
 
 ## Data Processing
 
-### Processing Stages
+### HTML to Markdown Conversion
+- Converting HTML content to standardized Markdown format
+- Preserving structural elements while removing unwanted formatting
 
-The raw collected data underwent several processing stages to transform it into structured profiles:
+### Pattern Matching and Extraction
+- Regular expressions for identifying structured information
+- Named entity recognition for extracting names, institutions, and dates
+- Citation pattern matching for publication extraction
 
-1. **HTML to Markdown Conversion**
-   - Conversion of formatted HTML content to standardized Markdown
-   - Removal of script tags, styling, and non-essential elements
-   - Preservation of semantic structure (headings, lists, tables)
+### Section Extraction
+- Identifying and categorizing content into predefined sections
+- Extracting academic background, research interests, publications, etc.
 
-2. **Pattern Matching and Extraction**
-   - Regular expression-based extraction of key information (emails, phone numbers, degrees)
-   - Named entity recognition for identifying people, organizations, and locations
-   - Date pattern recognition for temporal information
+### Deduplication
+- Identifying and removing duplicate entries across multiple sources
+- Publication deduplication based on title, authors, and DOI
+- Creating unique identifiers for each supervisor
 
-3. **Section Extraction**
-   - Identification of logical sections within documents (education, experience, publications)
-   - Classification of section types based on headings and content patterns
-   - Hierarchical structuring of related information
-
-4. **Information Categorization**
-   - Classification of extracted text into predefined categories
-   - Mapping of free-text fields to controlled vocabularies where applicable
-   - Tagging with relevant metadata (field of study, research methodologies)
-
-5. **Entity Recognition and Linking**
-   - Identification of research topics and domains
-   - Recognition of institutions and organizations
-   - Linking of publications to publication databases via DOIs/identifiers
-
-6. **Reference Parsing**
-   - Extraction of publication details from citation formats
-   - Structuring of bibliographic information into machine-readable format
-   - Normalization of journal names and conference proceedings
-
-7. **Deduplication**
-   - Identification and removal of duplicate information across sources
-   - Resolution of conflicting information through confidence scoring
-   - Versioning to track information changes over time
+### Visual Data Processing
+- Extracting base64-encoded images from source data
+- Decoding base64 strings to binary image data
+- Converting to standardized formats (JPEG)
+- Naming convention: `{user_id}.jpeg` for consistent referencing
+- Storage in dedicated `images/` directory for easy access
 
 ## Data Enrichment
 
-The initial structured data was enhanced through several enrichment techniques:
+### AI-Assisted Merging
+- Using Google Gemini 2.5 Pro for intelligent merging of fragmented information
+- Contextual understanding of academic profiles for better organization
+- Weighting newer information more heavily while preserving historical data
 
-1. **Cross-Source Integration**
-   - Combining information from multiple sources for each supervisor
-   - Creating comprehensive profiles with maximum coverage
-   - Resolving source-specific limitations
+### Structured Prompts for AI
+- Creating detailed prompts with specific merging instructions
+- Maintaining YAML structure throughout the enrichment process
+- Preserving existing information while adding new data
 
-2. **Inference and Derivation**
-   - Inferring research interests from publication titles and abstracts
-   - Deriving expertise areas based on teaching history and project supervision
-   - Calculating publication metrics and collaboration patterns
-
-3. **Normalization and Standardization**
-   - Standardizing institution names and department affiliations
-   - Normalizing publication venues and journal names
-   - Unifying date formats and contact information presentation
-
-4. **Contextual Enhancement**
-   - Adding departmental context to individual profiles
-   - Linking related supervisors based on co-authorship
-   - Including research group affiliations and roles
-
-5. **AI-Assisted Integration**
-   - Using large language models to extract structured information from unstructured text
-   - Generating coherent research summaries from publication abstracts
-   - Classifying research into standardized taxonomies
+### Manual Verification
+- Human review of enriched profiles for accuracy
+- Special attention to publications, academic background, and contact information
+- Final approval before integration into the system
 
 ## Data Structure
 
-### Profile Schema
+The enriched profiles are structured in YAML format with the following sections:
 
-Each supervisor profile is structured according to a comprehensive schema that captures the multifaceted aspects of their academic and research activities:
+### Basic Information
+- Name
+- Position
+- Department
+- University
+- Profile photograph reference
 
-1. **Basic Information**
-   - Full name and title
-   - Academic position
-   - Departmental affiliation
-   - University affiliation
+### Academic Background
+- Degrees
+- Institutions
+- Years
+- Fields of study
 
-2. **Contact Information**
-   - Institutional email
-   - Office location
-   - Phone number
-   - Alternative contact methods
+### Research Information
+- Research interests
+- Expertise
+- Key achievements
 
-3. **Academic Background**
-   - Degrees obtained (type, institution, year, field)
-   - Additional certifications and qualifications
-   - Academic awards and recognitions
+### Publications
+- Journal articles
+- Conference papers
+- Book chapters
+- Patents
 
-4. **Research Information**
-   - Research interests (structured as topics)
-   - Areas of expertise
-   - Methodological approaches
-   - Tools and technologies
+### Projects
+- Research projects
+- Funding information
+- Collaborators
 
-5. **Publications**
-   - Journal articles
-   - Conference papers
-   - Books and book chapters
-   - Technical reports
-   - Patents and intellectual property
+### Supervision Experience
+- PhD students
+- Master's students
+- Undergraduate students
 
-6. **Projects**
-   - Research grants (title, funding agency, amount, duration)
-   - Industrial collaborations
-   - Community projects
-   - International research partnerships
+### Professional Information
+- Roles
+- Professional memberships
+- Awards and recognition
 
-7. **Supervision Experience**
-   - PhD students supervised (completed and ongoing)
-   - Master's students supervised
-   - Undergraduate research supervision
-   - Topics of supervised research
+### Profile Links
+- Academic profiles (Google Scholar, ORCID, etc.)
+- Social profiles (LinkedIn, ResearchGate, etc.)
 
-8. **Professional Information**
-   - Academic roles and responsibilities
-   - Committee memberships
-   - Editorial positions
-   - Professional affiliations
-   - Community service
+### Visual Data
+- References to profile images
+- Path to image files in the repository
 
-9. **Profile Links**
-   - Academic profile pages
-   - Research database identifiers (ORCID, Scopus ID)
-   - Social and professional networks
+## Validation
 
-### Data Format
+### Format Validation
+- Ensuring proper YAML structure
+- Checking for missing required fields
+- Validating date formats and URLs
 
-The profile data is stored in YAML format, which offers several advantages:
+### Content Validation
+- Cross-referencing information with original sources
+- Verifying publication data against academic databases
+- Checking for inconsistencies in academic background
 
-1. **Human Readability**
-   - Clear structure that is both machine and human-readable
-   - Easy manual editing and verification
-   - Accessible to non-technical stakeholders
-
-2. **Hierarchical Structure**
-   - Natural representation of nested information
-   - Ability to capture complex relationships
-   - Flexible schema that can accommodate varied information types
-
-3. **Ecosystem Integration**
-   - Easy conversion to JSON, XML, and other formats
-   - Native support in many programming languages
-   - Compatible with version control systems for tracking changes
-
-4. **Extensibility**
-   - Schema can evolve without breaking existing data
-   - New sections can be added as information becomes available
-   - Custom fields can be included for specific research areas
-
-## Validation Process
-
-The data underwent rigorous validation to ensure accuracy and completeness:
-
-1. **Schema Validation**
-   - Verification of structural conformity to the defined schema
-   - Type checking for field values
-   - Enforcement of required fields
-
-2. **Consistency Checks**
-   - Cross-validation between related fields
-   - Temporal consistency of career information
-   - Logical coherence of research narratives
-
-3. **Completeness Assessment**
-   - Identification of missing critical information
-   - Scoring of profile completeness
-   - Prioritization of data gaps for further collection
-
-4. **Cross-Reference Validation**
-   - Verification of publications against external databases
-   - Confirmation of institutional affiliations
-   - Validation of degrees and credentials
+### Completeness Assessment
+- Evaluating the comprehensiveness of each profile
+- Identifying areas requiring additional data collection
+- Prioritizing profiles for further enrichment
 
 ## Limitations
 
-The methodology acknowledges several limitations:
-
-1. **Information Currency**
-   - Academic profiles change over time
-   - Publication lists require regular updates
-   - Research interests evolve with new projects
-
-2. **Source Availability**
-   - Not all supervisors maintain comprehensive online profiles
-   - Some information may be behind institutional logins
-   - Certain databases require subscription access
-
-3. **Name Disambiguation**
-   - Researchers with common names may be confused
-   - Name variations across different platforms
-   - Changes in names due to marriage or other reasons
-
-4. **Coverage Variations**
-   - Uneven depth of information across supervisors
-   - Senior faculty often have more comprehensive profiles
-   - Disciplinary differences in publication and recognition patterns
+- Availability and accessibility of source data
+- Inconsistencies in how researchers present their information
+- Language variations and transliteration differences
+- Time constraints for manual verification
+- Variations in image quality and availability
 
 ## Ethical Considerations
 
@@ -288,6 +168,11 @@ The data collection and processing adhered to ethical principles:
    - Processes for supervisors to review and correct their profiles
    - Regular update procedures
    - Feedback incorporation system
+
+5. **Image Usage**
+   - Use of publicly available professional photographs only
+   - Attribution of image sources where required
+   - Respect for institutional guidelines on image usage
 
 ## References
 

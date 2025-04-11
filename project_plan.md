@@ -8,16 +8,17 @@ The Research Supervisor Matching project aims to create a system that helps grad
 2. **Dashboard Development Phase** (Future): Creating an interactive web application that allows students to search for and match with potential supervisors based on their research interests and requirements.
 
 ## Current Status
-We have collected profile data for multiple research supervisors from the Software Engineering Department at the University of Malaya. The data includes academic backgrounds, contact information, research interests, publications, supervised students, and other relevant information. The data is stored in YAML format in the `profiles/` directory.
+We have collected and enriched profile data for multiple research supervisors from the Software Engineering Department at the University of Malaya. The data includes academic backgrounds, contact information, research interests, publications, supervised students, and other relevant information. The data is stored in YAML format in the `profiles/` directory.
 
-We have completed several important cleanup tasks, including:
-- Profile data verification and merging of extracted data into existing profiles
+We have completed several important tasks, including:
+- Profile data verification and merging of extracted data into existing profiles using AI assistance
 - Creation of a standardized profile format and schema documentation
 - Implementation of profile validation tools
 - Development of comprehensive documentation for the repository structure and methodology
 - Complete reorganization of the repository structure following the defined standards
+- AI-assisted merging of extracted data for all supervisor profiles
 
-The current focus is on refining data processing pipelines and preparing for the dashboard development phase.
+The current focus is on documentation improvement, refining data processing pipelines, and preparing for the dashboard development phase.
 
 ## To-Do List
 
@@ -42,7 +43,9 @@ The current focus is on refining data processing pipelines and preparing for the
    - [x] Document the profile schema and data format
    - [x] Create a data dictionary for all fields in profiles
    - [x] Add usage examples for accessing and querying the data
-   - [x] Provide instructions for contributing new profiles
+   - [ ] Consolidate and standardize all documentation
+   - [x] Document the profile merging process
+   - [x] Create templates for AI prompts
 
 4. **Data Processing Scripts Cleanup**
    - [ ] Refactor extraction scripts for better maintainability
@@ -57,6 +60,13 @@ The current focus is on refining data processing pipelines and preparing for the
    - [x] Convert all profiles to follow the standard schema
    - [x] Implement automated schema validation
    - [x] Document schema evolution and versioning
+
+6. **Profile Merging and Enrichment**
+   - [x] Create a system for AI-assisted profile merging
+   - [x] Generate prompts for each supervisor profile
+   - [x] Use Gemini 2.5 Pro to merge extracted data
+   - [x] Validate merged profiles against the schema
+   - [x] Document the merging process and results
 
 ### Design Tasks (Dashboard Development Preparation)
 
@@ -175,10 +185,10 @@ The current focus is on refining data processing pipelines and preparing for the
 - Data Collection and Initial Processing: Completed
 - Data Verification and Cleanup: Completed
 - Repository Structure Improvement: Completed
-- Documentation Enhancement: Completed
-- Data Schema Standardization: Completed
-- Processing Script Refinement: 2 weeks (In Progress)
-- Export Utilities Development: 1 week
+- Documentation Enhancement: 1 week (In Progress)
+- Profile Merging and Enrichment: Completed
+- Processing Script Refinement: 2 weeks (Next)
+- Data Export Utilities: 1 week
 
 ### Phase 2: Dashboard Development (Future)
 - User Research and Feature Definition: 3 weeks
@@ -193,6 +203,7 @@ The current focus is on refining data processing pipelines and preparing for the
 
 ### Technologies and Tools
 - **Data Processing**: Python, PyYAML, Pandas, BeautifulSoup
+- **AI Assistance**: Google Gemini 2.5 Pro, Google AI Python SDK
 - **Validation**: JSON Schema, jsonschema, PyYAML
 - **Backend**: Python (FastAPI or Django), PostgreSQL, Docker
 - **Frontend**: React.js, TypeScript, Tailwind CSS
@@ -232,11 +243,11 @@ The current focus is on refining data processing pipelines and preparing for the
 ## Next Steps
 
 ### Immediate Priorities (Next 2 Weeks)
-1. Complete the remaining data processing script cleanup tasks
-2. Add error handling to all data processing pipelines
-3. Optimize the performance of validation and extraction scripts
-4. Begin preparing for user research and requirements gathering
-5. Develop a plan for the dashboard architecture
+1. Complete the documentation consolidation and standardization
+2. Create an updated README with clear project explanation and onboarding instructions
+3. Develop data export utilities for analysis and visualization
+4. Begin user research for the dashboard phase
+5. Refactor and optimize data processing scripts
 
 ### Medium-Term Goals (1-3 Months)
 1. Complete user research and feature definition
@@ -244,3 +255,10 @@ The current focus is on refining data processing pipelines and preparing for the
 3. Develop a prototype of the matching algorithm
 4. Begin backend development for the core API endpoints
 5. Plan the database schema for the application 
+
+### Recently Completed Milestones
+1. AI-assisted merging of extracted data for all supervisor profiles
+2. Comprehensive documentation of the profile merging process
+3. Creation of templates for AI prompts used in the system
+4. Implementation of data access guides and examples
+5. Repository structure reorganization and documentation update 
