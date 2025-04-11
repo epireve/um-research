@@ -1,13 +1,23 @@
 import csv
 import os
+from pathlib import Path
 from bs4 import BeautifulSoup
 
-# Define file paths
-html_file_path = "search_result.html"
-csv_file_path = "parsed_results.csv"
+# Define file paths using repository structure
+DATA_DIR = Path(__file__).parent.parent.parent / "data"
+RAW_HTML_DIR = DATA_DIR / "raw" / "html"
+REFERENCE_DIR = DATA_DIR / "reference"
+
+# Create directories if they don't exist
+RAW_HTML_DIR.mkdir(parents=True, exist_ok=True)
+REFERENCE_DIR.mkdir(parents=True, exist_ok=True)
+
+# Define input and output file paths
+html_file_path = RAW_HTML_DIR / "search_result.html"
+csv_file_path = REFERENCE_DIR / "supervisor_profiles.csv"
 
 # Check if HTML file exists
-if not os.path.exists(html_file_path):
+if not html_file_path.exists():
     print(f"Error: HTML file not found at {html_file_path}")
     exit()
 
@@ -138,3 +148,7 @@ try:
     print(f"Successfully parsed data and saved to {csv_file_path}")
 except Exception as e:
     print(f"Error writing to CSV file: {e}")
+
+# Print summary of the parsed data
+print(f"Parsed {len(researcher_data)} researcher profiles")
+print(f"Data saved to {csv_file_path}")
