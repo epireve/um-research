@@ -56,10 +56,11 @@ um-research-scrape/
 │       └── research_areas.yaml   # Standard research areas
 ├── scripts/                      # Standalone scripts
 │   ├── processor.py              # Main processing script
-│   ├── extract_images.py         # Script for extracting profile images
+│   ├── extract_images.py         # Script for extracting profile images from base64 data in CSV
 │   ├── gemini_integration.py     # Integration with Google Gemini AI
 │   ├── parse_results.py          # Parse raw scrape results
-│   └── validation.py             # Validate processed data
+│   ├── validate_profile.py       # Validate profiles against schema
+│   └── check_env.py              # Check environment and dependencies
 └── notebooks/                    # Jupyter notebooks
     ├── exploratory_analysis.ipynb # Data exploration
     └── profile_completeness.ipynb # Analysis of profile completeness
@@ -114,7 +115,8 @@ Contains standalone scripts for data processing, extraction, and validation:
 - **extract_images.py**: Script for extracting and processing profile images
 - **gemini_integration.py**: Script for generating Gemini prompts
 - **parse_results.py**: Script for parsing search results
-- **validation.py**: Script for validating profile data against the schema
+- **validate_profile.py**: Script for validating profiles against the schema
+- **check_env.py**: Script for checking environment and dependencies
 
 ### `notebooks/`
 

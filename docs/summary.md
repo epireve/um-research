@@ -7,7 +7,7 @@ This project provides tools to enrich research supervisor profiles by extracting
 1. **Data Extraction**: The `processor.py` script extracts data from HTML sources and saves it to `data/extracted/{user_id}_extracted.yaml`
 2. **Prompt Generation**: The `gemini_integration.py` script creates prompts for Google Gemini 2.5 Pro
 3. **Profile Update**: Using Google Gemini 2.5 Pro to merge the extracted data with the existing profiles
-4. **Image Extraction**: The `extract_images.py` script extracts profile images from base64-encoded data
+4. **Image Extraction**: The `scripts/extract_images.py` script extracts profile images from base64-encoded data
 
 ## Technical Details
 
@@ -43,16 +43,20 @@ The parsing script processes HTML search results to extract structured superviso
    - Base64-encoded profile images
 3. Saves the parsed data to `data/reference/supervisor_profiles.csv`
 
-### Image Extraction (`extract_images.py`)
+### Image Extraction (`scripts/extract_images.py`)
 
 The image extraction script processes base64-encoded images from the supervisor CSV file:
 
 1. Reads the CSV file from `data/reference/supervisor_profiles.csv`
 2. For each supervisor record:
-   - Extracts the base64-encoded image data
+   - Extracts the base64-encoded image data from the "Image Source" column
    - Decodes the base64 string to binary image data
    - Saves the image as `data/images/{userID}.jpeg`
-3. Logs the process and reports on successfully extracted images
+3. Handles common variations in base64 data format (e.g., removing data:image/jpeg;base64, prefix)
+4. Provides detailed logging throughout the process
+5. Reports summary statistics on successfully extracted images
+
+The script successfully extracted 83 profile images, ensuring that each supervisor has a correctly named image file available for use in the dashboard.
 
 ### Prompt Generation (`gemini_integration.py`)
 
@@ -89,9 +93,10 @@ The final step involves using Google Gemini 2.5 Pro to:
    - The final merge respects the structure of the original YAML files
 
 4. **Image Processing**:
-   - Base64-encoded images are extracted from the CSV file
-   - Images are saved as JPEG files with consistent naming
+   - Base64-encoded images are extracted from the CSV file using `scripts/extract_images.py`
+   - Images are saved as JPEG files with consistent naming convention: `{userID}.jpeg`
    - File names correspond to researcher user IDs for easy association
+   - All images are stored in the `data/images/` directory as specified in the repository structure
    - The process handles different image formats embedded in the base64 data
 
 ## Troubleshooting
@@ -112,8 +117,8 @@ If there are issues with file permissions or paths, ensure that:
 
 Once the environment is properly set up, you can:
 
-1. Run `python -m src.processor.processor` to extract data
-2. Run `python -m src.processor.parse_results` to parse HTML search results
+1. Run `python -m scripts.processor` to extract data
+2. Run `python -m scripts.parse_results` to parse HTML search results
 3. Run `python -m scripts.extract_images` to extract profile images
-4. Run `python -m src.processor.gemini_integration` to generate prompts
+4. Run `python -m scripts.gemini_integration` to generate prompts
 5. Use Google Gemini 2.5 Pro to update the profiles 
