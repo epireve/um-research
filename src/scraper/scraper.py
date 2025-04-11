@@ -1,7 +1,13 @@
+#!/usr/bin/env python3
+
 import os
 import json
+import csv
 import logging
 import time
+import httpx
+from bs4 import BeautifulSoup
+from pathlib import Path
 from typing import List
 from dotenv import load_dotenv
 from scrapegraphai.graphs import SmartScraperGraph
@@ -19,6 +25,144 @@ logger = logging.getLogger(__name__)
 
 # Load environment variables
 load_dotenv()
+
+
+class Scraper:
+    """Base scraper class for the Research Supervisor Matching project."""
+
+    def __init__(self):
+        """Initialize the scraper with default settings."""
+        self.base_url = "https://umexpert.um.edu.my"
+        self.search_endpoint = "/fcom-search/search.action"
+        self.data_dir = Path(__file__).parent.parent.parent / "data"
+        self.raw_dir = self.data_dir / "raw"
+        self.html_dir = self.raw_dir / "html"
+        self.profiles_dir = self.data_dir / "profiles"
+
+        # Create directories if they don't exist
+        self.html_dir.mkdir(parents=True, exist_ok=True)
+        self.profiles_dir.mkdir(parents=True, exist_ok=True)
+
+        # Configure httpx client
+        self.client = httpx.Client(
+            timeout=60.0,
+            follow_redirects=True,
+            headers={
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
+            },
+        )
+
+    def _make_request(self, url, method="GET", params=None, data=None, retry_count=3):
+        """Make an HTTP request with retry logic."""
+        for attempt in range(retry_count):
+            try:
+                if method.upper() == "GET":
+                    response = self.client.get(url, params=params)
+                else:
+                    response = self.client.post(url, params=params, data=data)
+
+                response.raise_for_status()
+                return response
+            except httpx.HTTPStatusError as e:
+                logger.error(f"HTTP error: {e} (Attempt {attempt + 1}/{retry_count})")
+                if attempt == retry_count - 1:
+                    raise
+            except httpx.RequestError as e:
+                logger.error(
+                    f"Request error: {e} (Attempt {attempt + 1}/{retry_count})"
+                )
+                if attempt == retry_count - 1:
+                    raise
+
+            # Wait before retrying
+            time.sleep(2**attempt)
+
+    def scrape_researchers(self, department="Software Engineering"):
+        """Scrape researchers from a specific department."""
+        logger.info(f"Scraping researchers from department: {department}")
+
+        search_url = self.base_url + self.search_endpoint
+        params = {
+            "page": 1,
+            "pageSize": 100,
+            "searchTerm": department,
+            "typeFilter": "EXPERT",
+        }
+
+        try:
+            response = self._make_request(search_url, params=params)
+
+            # Save raw HTML for reference
+            raw_html_path = self.html_dir / "search_result.html"
+            with open(raw_html_path, "w", encoding="utf-8") as f:
+                f.write(response.text)
+
+            # Parse HTML
+            soup = BeautifulSoup(response.text, "html.parser")
+            researchers = []
+
+            # Extract researcher data
+            result_items = soup.select(".search-results .expert-item")
+            for item in result_items:
+                name_elem = item.select_one(".expert-name a")
+                if name_elem:
+                    name = name_elem.text.strip()
+                    profile_url = name_elem["href"]
+
+                    # Extract department and position
+                    department_elem = item.select_one(".expert-department")
+                    department = department_elem.text.strip() if department_elem else ""
+
+                    position_elem = item.select_one(".expert-position")
+                    position = position_elem.text.strip() if position_elem else ""
+
+                    researchers.append(
+                        {
+                            "name": name,
+                            "profile_url": profile_url,
+                            "department": department,
+                            "position": position,
+                        }
+                    )
+
+            logger.info(f"Found {len(researchers)} researchers")
+            return researchers
+
+        except Exception as e:
+            logger.error(f"Error scraping researchers: {e}")
+            raise
+
+    def save_to_json(self, researchers):
+        """Save researchers data to JSON file."""
+        json_path = self.data_dir / "reference" / "researchers.json"
+        os.makedirs(os.path.dirname(json_path), exist_ok=True)
+
+        with open(json_path, "w", encoding="utf-8") as f:
+            json.dump(researchers, f, indent=4)
+
+        logger.info(f"Saved {len(researchers)} researchers to {json_path}")
+
+    def save_to_csv(self, researchers):
+        """Save researchers data to CSV file."""
+        csv_path = self.data_dir / "reference" / "researchers.csv"
+        os.makedirs(os.path.dirname(csv_path), exist_ok=True)
+
+        with open(csv_path, "w", encoding="utf-8", newline="") as f:
+            fieldnames = ["name", "profile_url", "department", "position"]
+            writer = csv.DictWriter(f, fieldnames=fieldnames)
+
+            writer.writeheader()
+            for researcher in researchers:
+                writer.writerow(researcher)
+
+        logger.info(f"Saved {len(researchers)} researchers to {csv_path}")
+
+    def run(self):
+        """Run the scraper to collect researcher data."""
+        researchers = self.scrape_researchers()
+        self.save_to_json(researchers)
+        self.save_to_csv(researchers)
+        return researchers
 
 
 class UMExpertScraper:
