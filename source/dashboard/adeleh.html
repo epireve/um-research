@@ -1,0 +1,1459 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  	<meta name="description" content="UMEXPERT:Directory Of Academic staff."\>
+  	<meta name="keywords" content="Malaysia Research University, Malaysia University Research, University Malaya Research, University Malaya Expert UMEXPERT:Directory Of Academic staff, UM:Directory Of Academic staff, Directory Of Academic staff, UMEXPERT, universiti malaya, UM, EXPERT"\>
+  	<title>UMEXPERT - DR. ADELEH ASEMI ZAVAREH</title>
+  	<meta name="author" content="UMEXPERT">
+	<link href="https://umexpert.um.edu.my/css/bootstrap.min.css" rel="stylesheet">
+	
+	<!-- Optional theme -->
+	<link href="https://umexpert.um.edu.my/css/bootstrap-theme.min.css" rel="stylesheet">
+	<link href="https://umexpert.um.edu.my/plugins/jQueryUI/jquery-ui.min.css" rel="stylesheet">
+	<link href="https://umexpert.um.edu.my/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">		
+	<link href="https://umexpert.um.edu.my/plugins/font-awesome/dist/font-awesome-animation.min.css" rel="stylesheet">
+	<link href="https://umexpert.um.edu.my/plugins/academicons/css/academicons.min.css" rel="stylesheet">
+	<link href="https://umexpert.um.edu.my/plugins/fullcalendar/fullcalendar.css" rel="stylesheet">
+	<link href="https://umexpert.um.edu.my/plugins/xcharts/xcharts.min.css" rel="stylesheet">
+	<link href="https://umexpert.um.edu.my/plugins/select2/select2.css" rel="stylesheet">
+	<link href="https://umexpert.um.edu.my/plugins/justified-gallery/justifiedGallery.css" rel="stylesheet">
+	<link href="https://umexpert.um.edu.my/plugins/chartist/chartist.min.css" rel="stylesheet">
+	<link href="https://umexpert.um.edu.my/css/dashboard.css" rel="stylesheet">
+	<link href="https://umexpert.um.edu.my/css/login-modal.css" rel="stylesheet">
+	
+	<!--ADD DATATABLES -->
+	<link href="https://umexpert.um.edu.my/plugins/datatables/css/jquery.datatables.css" rel="stylesheet">
+	<link href="https://umexpert.um.edu.my/plugins/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+	<link href="https://umexpert.um.edu.my/plugins/datatables/css/dataTables.bootstrap.min.css" rel="stylesheet">
+	<link href="https://umexpert.um.edu.my/plugins/datatables/css/responsive.bootstrap.min.css" rel="stylesheet">
+	
+	<!-- JQUERY (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="https://umexpert.um.edu.my/plugins/dompurify/purify.min.js"></script>
+	<script src="https://umexpert.um.edu.my/js/jquery.min.js"></script>
+	<script src="https://umexpert.um.edu.my/js/bootstrap.min.js"></script>
+	
+	<!--DATATABLE-->
+	<script src="https://umexpert.um.edu.my/plugins/datatables/js/jquery.dataTables.min.js" type="text/javascript" language="javascript"></script>
+	<script src="https://umexpert.um.edu.my/plugins/datatables/js/jquery.dataTables.js" type="text/javascript" language="javascript"></script>	
+	
+	
+	<style type="text/css">
+	.navbar-nav > li > a {
+		box-shadow: none !important;
+	}
+	</style>
+	
+</head>
+
+<body>
+	
+	<!--Start Header-->
+	<header class="bg-black">
+		<nav class="navbar navbar-inverse navbar-external-dashboard">
+			  <div class="container">
+				<div class="navbar-header">
+				  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				  </button>
+				  <a class="navbar-brand" href="https://umexpert.um.edu.my" style="font-weight:bold; color:#FFF;" title="UMEXPERT-94">UMEXPERT</a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse" style="font-weight:bold;">
+										<ul class="nav navbar-nav">
+						<li class="active"><a href="https://umexpert.um.edu.my/adeleh">DR. ADELEH ASEMI ZAVAREH</a></li>
+					</ul>
+										
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href='login.php' class="navbar-brand"><i class="fa fa-user" aria-hidden="true"></i> Login</a></li> 
+						                    </ul>
+				</div>
+			</div>
+		</nav>
+		
+		
+	
+		<div class="container-fluid" style="background-image:url(images/search-bg.jpg); height: 100px; margin-top:-10px;">
+			<div class="row">
+				<div class="col-md-3" style="height:auto;">
+					<a href="//um.edu.my/" target="_blank"><img src="img/logo-um.png" style="margin-top:25px;"></a>
+				</div>
+				<div class="col-md-9">
+					<div class="col-xs-10 col-xs-offset-1" style="margin-top:2em;margin-bottom:2em">
+					<form method="get" target="_blank" action="expert_search.php">
+					<div class="input-group" id="input">
+						<div class="input-group-btn search-panel">
+							<button type="button" class="btn btn-lg btn-default dropdown-toggle" data-toggle="dropdown">
+								<span id="search_concept">Name</span> <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" role="menu">							  
+							  <li><a href="#name">Name</a></li>
+							  <li><a href="#faculty">Faculty</a></li>
+							  <li><a href="#expertise">Areas of Expertise</a></li>
+							  
+							</ul>
+						</div>
+						<input type="text" class="form-control input-lg" style="font-size: 14px;" name="search_front" placeholder="Search term..." id="input_item">
+												
+						<select class="form-control input-lg" name="search_front" id="selfac" aria-label="Example select with button addon"  placeholder="Choose faculty" style="display:none; font-size: 14px;" id="input_fac">
+							<option></option>
+							<option value='I' >Academy of Islamic Studies</option><option value='B' >Academy of Malay Studies</option><option value='O' >Asia-Europe Institute</option><option value='GD' >Associate Vice-Chancellor (Corporate Strategy)</option><option value='GC' >Associate Vice-Chancellor (Global Engagement)</option><option value='G3' >Bursar</option><option value='F' >Centre for Foundation Studies in Science</option><option value='G7' >Deputy Vice-Chancellor (Academic and International)</option><option value='GB' >Deputy Vice-Chancellor (Development)</option><option value='G8' >Deputy Vice-Chancellor (Research and Innovation)</option><option value='G9' >Deputy Vice-Chancellor (Student Affairs)</option><option value='A' >Faculty of Arts and Social Sciences</option><option value='Z' >Faculty of Built Environment</option><option value='AA' >Faculty of Business and Economics</option><option value='C' >Faculty of Computer Science and Information Technology</option><option value='R' >Faculty of Creative Arts</option><option value='D' >Faculty of Dentistry</option><option value='P' >Faculty of Education</option><option value='K' >Faculty of Engineering</option><option value='T' >Faculty of Languages and Linguistics</option><option value='L' >Faculty of Law</option><option value='M' >Faculty of Medicine</option><option value='FA' >Faculty of Pharmacy</option><option value='S' >Faculty of Science</option><option value='U' >Faculty of Sports and Exercise Science</option><option value='H1' >Institute for Advanced Studies (IAS)</option><option value='Y2' >Institute of Ocean and Earth Sciences</option><option value='GF' >Integrity Unit</option><option value='GG' >Internal Audit Unit</option><option value='X' >International Institute of Public Policy & Management (Inpuma)</option><option value='Y3' >Photonics Research Centre</option><option value='G1' >Registrar</option><option value='Y4' >Tropical Infectious Diseases Research and Education Centre</option><option value='H3' >Universiti Malaya Medical Centre</option><option value='Y' >Universiti Malaya Power Energy Dedicated Advanced Centre</option><option value='H2' >University Malaya's Centre for Continuing Education (Umcced)</option><option value='G11' >Vice-Chancellor</option>						</select>
+
+						<span class="input-group-btn">
+							<button class="btn btn-lg btn-default" type="submit"><i class="fa fa-search"></i></button>
+						</span>
+					</div>
+					</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!--End Header-->
+	
+	<!--Start Content-->
+	<div class="content">
+	<script type="text/javascript">
+ 	$(document).ready(function() {
+		 // Function to sanitize dynamic selectors
+		function sanitizeSelector(selector) {
+			// Create a temporary div element
+			var tempDiv = document.createElement('div');
+			// Set the text content to the selector
+			tempDiv.textContent = selector;
+			// Return the sanitized text content
+			return tempDiv.textContent;
+		}
+
+		// Function to handle the addition of a dynamic ID
+		function addDynamicId() {
+			var userInputId = $('#input_item').val(); // Get value from input field
+			var sanitizedUserInputId = sanitizeSelector(userInputId); // Sanitize the input
+
+			// If there's no input, provide a default ID to avoid setting an empty ID
+			if (!sanitizedUserInputId.trim()) {
+				sanitizedUserInputId = 'default-id';
+			}
+
+			// Add the sanitized ID to the target element
+			$('#input').attr('id', sanitizedUserInputId);
+
+		}
+
+		// Event listener for the button click to trigger the dynamic ID addition
+		$('#button').click(function(event) {
+			event.preventDefault(); // Prevent form submission
+			addDynamicId(); // Add the dynamic ID
+		});
+		
+		// Disable specific input fields using static selectors
+		$('#expertise').attr('disabled', true);
+		$('#faculty').attr('disabled', true);
+		$('#selfac').attr('disabled', true);
+		$('#input_item').attr('disabled', false);
+
+	});
+		
+	$(document).ready(function(e){
+		$('.search-panel .dropdown-menu').find('a').click(function(e) {
+			e.preventDefault();
+			var param = $(this).attr("href").replace("#","");
+			var concept = $(this).text();
+			//$('.search-panel span#search_concept').text(concept);
+			$('.search-panel span#search_concept').text(concept);
+			$('.input-group #category').val(param);
+			
+			if(concept == "Name"){
+				$("#input").append("<input type='hidden' name='cat' value='name' id='name'>");
+				$("#input_item").show();
+				$("#selfac").hide();
+				$('#expertise').attr('disabled', true);
+				$('#faculty').attr('disabled', true);
+				$('#selfac').attr('disabled', true);
+				$('#input_item').attr('disabled', false);
+			}else if (concept == "Areas of Expertise"){
+				$("#input").append("<input type='hidden' name='cat' value='expertise' id='expertise'>");
+				$("#input_item").show();
+				$("#selfac").hide();
+				$('#faculty').attr('disabled', true);
+				$('#name').attr('disabled', true);
+				$('#selfac').attr('disabled', true);
+				$('#input_item').attr('disabled', false);
+			}else if (concept == "Faculty"){
+				$("#input").append("<input type='hidden' name='cat' value='faculty' id='faculty'>");
+				$("#input_item").hide();
+				$("#selfac").show();
+				$('#expertise').attr('disabled', true);
+				$('#name').attr('disabled', true);
+				$('#input_item').attr('disabled', true);
+				$('#selfac').attr('disabled', false);
+			}
+		});
+	  
+	});
+	</script>
+<link rel="stylesheet" href="">
+<link rel="stylesheet" href="">
+
+<div class="row" style="margin-top: -10px !important;">
+    <!-- Start Content -->
+    <div class="col-xs-12 col-sm-12">
+        <div class="panel">
+            <div class="panel-heading p-0 b-0">
+                <ul class="nav nav-tabs nav-tabs-blue">
+                    <li class="active"><a href="#tabPublication" data-toggle="tab">Publication</a></li>
+                    <li><a href="#tabResearch" data-toggle="tab">Research</a></li>
+                </ul>
+            </div>
+
+            <div class="panel-body">
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="tabPublication">
+                        <!-- Start publication -->
+                            
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#list_of_pub_J').DataTable({
+                "sPaginationType": "full_numbers",
+                "bLengthChange": false,
+                "bFilter": false,
+                "bSort": false,
+                "bInfo": true,
+                "bAutoWidth": false,
+                "oLanguage": {
+                    "sEmptyTable": '',
+                    "sInfoEmpty": ''
+                },
+                "sEmptyTable": "Loading data from server",
+                "sDom": '<"filterRecords"l><"top">rt<"bottom"i <"paging_right"p>><"clear">',
+                "fnDrawCallback": function(oSettings) {
+                    if (oSettings._iDisplayLength >= oSettings.fnRecordsDisplay()) {
+                        $(oSettings.nTableWrapper).find('.dataTables_paginate').hide();
+                    }
+                }
+            });
+        });
+    </script>
+    
+    <!--Start Panel-->
+    <div class="panel panel-border-top widget-project">
+        <div class="panel-heading widget-h bl-default">
+            <span>ARTICLE IN ACADEMIC JOURNALS</span>
+        </div>
+        <div class="panel-body">
+            <table class="table table-striped dataTable no-footer" id="list_of_pub_J">
+                <thead>
+                    <tr valign="top"> 
+                        <th width="3%">NO</th>
+                        <th>DETAILS OF ARTICLE IN ACADEMIC JOURNALS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                                            <tr>
+                            <td>1.</td>
+                            <td>
+                                <div class="row m-0">
+                                    A model for investment type recommender system based on the potential investors based on investors and experts feedback using ANFIS and MNN&nbsp;
+                                    <span class="label label-success">2024</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='adeleh'>Adeleh Asemi Zavareh</a></div>                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>JOURNAL OF BIG DATA</div>
+                                    </div>
+                                                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">DOI :</div>
+                                        <div>10.1186/s40537-024-00965-y</div>
+                                    </div>
+                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>2.</td>
+                            <td>
+                                <div class="row m-0">
+                                    Unveiling the impact of managerial traits on investor decision prediction: ANFIS approach&nbsp;
+                                    <span class="label label-success">2023</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='adeleh'>Adeleh Asemi Zavareh</a></div>                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>Soft Computing</div>
+                                    </div>
+                                                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">DOI :</div>
+                                        <div>10.1007/s00500-023-08102-2</div>
+                                    </div>
+                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>3.</td>
+                            <td>
+                                <div class="row m-0">
+                                    Sentiment Analysis in E-commerce Platforms: A Review of Current Techniques and Future Directions&nbsp;
+                                    <span class="label label-success">2023</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='mumtaz'>Mumtaz Begum Binti Peer Mustafa</a>, <a href='adeleh'>Adeleh Asemi Zavareh</a></div>                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>IEEE Access</div>
+                                    </div>
+                                                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">DOI :</div>
+                                        <div>10.1109/ACCESS.2023.3307308</div>
+                                    </div>
+                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>4.</td>
+                            <td>
+                                <div class="row m-0">
+                                    Unveiling the impact of managerial traits on investor decision prediction: ANFIS approach&nbsp;
+                                    <span class="label label-success">2023</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='adeleh'>Adeleh Asemi Zavareh</a></div>                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>SOFT COMPUTING</div>
+                                    </div>
+                                                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">DOI :</div>
+                                        <div>10.1007/s00500-023-08102-2</div>
+                                    </div>
+                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>5.</td>
+                            <td>
+                                <div class="row m-0">
+                                    Adaptive neuro-fuzzy inference system for customizing investment type based on the potential investors’ demographics and feedback&nbsp;
+                                    <span class="label label-success">2023</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='adeleh'>Adeleh Asemi Zavareh</a></div>                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>Journal of Big Data</div>
+                                    </div>
+                                                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">DOI :</div>
+                                        <div>10.1186/s40537-023-00784-7</div>
+                                    </div>
+                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>6.</td>
+                            <td>
+                                <div class="row m-0">
+                                    Adaptive neuro-fuzzy inference system for customizing investment type based on the potential investors&#039; demographics and feedback&nbsp;
+                                    <span class="label label-success">2023</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='adeleh'>Adeleh Asemi Zavareh</a></div>                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>JOURNAL OF BIG DATA</div>
+                                    </div>
+                                                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">DOI :</div>
+                                        <div>10.1186/s40537-023-00784-7</div>
+                                    </div>
+                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>7.</td>
+                            <td>
+                                <div class="row m-0">
+                                    Investment Recommender System Model Based on the Potential Investors&#039; Key Decision Factors&nbsp;
+                                    <span class="label label-success">2023</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='adeleh'>Adeleh Asemi Zavareh</a></div>                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>BIG DATA</div>
+                                    </div>
+                                                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">DOI :</div>
+                                        <div>10.1089/big.2022.0302</div>
+                                    </div>
+                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>8.</td>
+                            <td>
+                                <div class="row m-0">
+                                    The AHP-TOPSIS based DSS for selecting suppliers of information resources&nbsp;
+                                    <span class="label label-success">2022</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='adeleh'>Adeleh Asemi Zavareh</a></div>                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>2022 2nd International Conference on Distributed Computing and High Performance Computing, DCHPC 2022</div>
+                                    </div>
+                                                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">DOI :</div>
+                                        <div>10.1109/DCHPC55044.2022.9732125</div>
+                                    </div>
+                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>9.</td>
+                            <td>
+                                <div class="row m-0">
+                                    An integrated model for evaluation of big data challenges and analytical methods in recommender systems&nbsp;
+                                    <span class="label label-success">2022</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='adeleh'>Adeleh Asemi Zavareh</a>, <a href='alii'>Ali Alibeigi Beni</a></div>                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>JOURNAL OF BIG DATA</div>
+                                    </div>
+                                                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">DOI :</div>
+                                        <div>10.1186/s40537-022-00560-z</div>
+                                    </div>
+                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>10.</td>
+                            <td>
+                                <div class="row m-0">
+                                    Legal Compliance Assessment of the Malaysian Health Sector through the Lens of Privacy Policies&nbsp;
+                                    <span class="label label-success">2022</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='abmunir'>Abu Bakar Bin Munir</a>, <a href='adeleh'>Adeleh Asemi Zavareh</a>, <a href='alii'>Ali Alibeigi Beni</a></div>                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>International Journal of Information Security and Privacy</div>
+                                    </div>
+                                                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">DOI :</div>
+                                        <div>10.4018/IJISP.315818</div>
+                                    </div>
+                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>11.</td>
+                            <td>
+                                <div class="row m-0">
+                                    The Competitive Situation of the Cheminformatics Industry Based on Porter’s Model in Iran&nbsp;
+                                    <span class="label label-success">2022</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='adeleh'>Adeleh Asemi Zavareh</a></div>                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>SAGE Open</div>
+                                    </div>
+                                                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">DOI :</div>
+                                        <div>10.1177/21582440221134604</div>
+                                    </div>
+                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>12.</td>
+                            <td>
+                                <div class="row m-0">
+                                    A judgment-based model for usability evaluating of interactive systems using fuzzy Multi Factors Evaluation (MFE)&nbsp;
+                                    <span class="label label-success">2022</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='adeleh'>Adeleh Asemi Zavareh</a></div>                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>APPLIED SOFT COMPUTING</div>
+                                    </div>
+                                                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">DOI :</div>
+                                        <div>10.1016/j.asoc.2022.108411</div>
+                                    </div>
+                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>13.</td>
+                            <td>
+                                <div class="row m-0">
+                                    Non-empirical ISO 9241-210:2019-based usability evaluation using fuzzy inference analyser: a special issue on interactive social robots&nbsp;
+                                    <span class="label label-success">2022</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='adeleh'>Adeleh Asemi Zavareh</a></div>                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>LIBRARY HI TECH</div>
+                                    </div>
+                                                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">DOI :</div>
+                                        <div>10.1108/LHT-02-2022-0091</div>
+                                    </div>
+                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>14.</td>
+                            <td>
+                                <div class="row m-0">
+                                    Non-empirical ISO 9241-210:2019-based usability evaluation using fuzzy inference analyser: a special issue on interactive social robots&nbsp;
+                                    <span class="label label-success">2022</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='adeleh'>Adeleh Asemi Zavareh</a></div>                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>Library Hi Tech</div>
+                                    </div>
+                                                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">DOI :</div>
+                                        <div>10.1108/LHT-02-2022-0091</div>
+                                    </div>
+                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>15.</td>
+                            <td>
+                                <div class="row m-0">
+                                    Comparative survey on the ways of access to managerial information&nbsp;
+                                    <span class="label label-success">2022</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='adeleh'>Adeleh Asemi Zavareh</a></div>                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>2022 2nd International Conference on Distributed Computing and High Performance Computing, DCHPC 2022</div>
+                                    </div>
+                                                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">DOI :</div>
+                                        <div>10.1109/DCHPC55044.2022.9731842</div>
+                                    </div>
+                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>16.</td>
+                            <td>
+                                <div class="row m-0">
+                                    An integrated model for evaluation of big data challenges and analytical methods in recommender systems&nbsp;
+                                    <span class="label label-success">2022</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='adeleh'>Adeleh Asemi Zavareh</a>, <a href='alii'>Ali Alibeigi Beni</a></div>                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>Journal of Big Data</div>
+                                    </div>
+                                                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">DOI :</div>
+                                        <div>10.1186/s40537-022-00560-z</div>
+                                    </div>
+                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>17.</td>
+                            <td>
+                                <div class="row m-0">
+                                    A judgment-based model for usability evaluating of interactive systems using fuzzy Multi Factors Evaluation (MFE)&nbsp;
+                                    <span class="label label-success">2022</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='adeleh'>Adeleh Asemi Zavareh</a></div>                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>Applied Soft Computing</div>
+                                    </div>
+                                                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">DOI :</div>
+                                        <div>10.1016/j.asoc.2022.108411</div>
+                                    </div>
+                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>18.</td>
+                            <td>
+                                <div class="row m-0">
+                                    Infoecology of the deep learning and smart manufacturing: thematic and concept interactions&nbsp;
+                                    <span class="label label-success">2022</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='adeleh'>Adeleh Asemi Zavareh</a></div>                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>Library Hi Tech</div>
+                                    </div>
+                                                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">DOI :</div>
+                                        <div>10.1108/LHT-08-2021-0252</div>
+                                    </div>
+                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>19.</td>
+                            <td>
+                                <div class="row m-0">
+                                    A decade after the Personal Data Protection Act 2010 (PDPA): Compliance of communications companies with the notice and choice principle&nbsp;
+                                    <span class="label label-success">2022</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='abmunir'>Abu Bakar Bin Munir</a>, <a href='adeleh'>Adeleh Asemi Zavareh</a>, <a href='alii'>Ali Alibeigi Beni</a></div>                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>Journal of Data Protection and Privacy</div>
+                                    </div>
+                                                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>20.</td>
+                            <td>
+                                <div class="row m-0">
+                                    The AHP-TOPSIS based DSS for selecting suppliers of information resources&nbsp;
+                                    <span class="label label-success">2022</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='adeleh'>Adeleh Asemi Zavareh</a></div>                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>2022 SECOND INTERNATIONAL CONFERENCE ON DISTRIBUTED COMPUTING AND HIGH PERFORMANCE COMPUTING (DCHPC)</div>
+                                    </div>
+                                                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">DOI :</div>
+                                        <div>10.1109/DCHPC55044.2022.9732125</div>
+                                    </div>
+                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>21.</td>
+                            <td>
+                                <div class="row m-0">
+                                    Comparative survey on the ways of access to managerial information&nbsp;
+                                    <span class="label label-success">2022</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='adeleh'>Adeleh Asemi Zavareh</a></div>                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>2022 SECOND INTERNATIONAL CONFERENCE ON DISTRIBUTED COMPUTING AND HIGH PERFORMANCE COMPUTING (DCHPC)</div>
+                                    </div>
+                                                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">DOI :</div>
+                                        <div>10.1109/DCHPC55044.2022.9731842</div>
+                                    </div>
+                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>22.</td>
+                            <td>
+                                <div class="row m-0">
+                                    Data to evaluate the usability of an interactive system based on a judgment-based model&nbsp;
+                                    <span class="label label-success">2022</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='adeleh'>Adeleh Asemi Zavareh</a></div>                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>DATA IN BRIEF</div>
+                                    </div>
+                                                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">DOI :</div>
+                                        <div>10.1016/j.dib.2022.108418</div>
+                                    </div>
+                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>23.</td>
+                            <td>
+                                <div class="row m-0">
+                                    Data to evaluate the usability of an interactive system based on a judgment-based model (vol 43, 108418, 2022)&nbsp;
+                                    <span class="label label-success">2022</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='adeleh'>Adeleh Asemi Zavareh</a></div>                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>DATA IN BRIEF</div>
+                                    </div>
+                                                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">DOI :</div>
+                                        <div>10.1016/j.dib.2022.108472</div>
+                                    </div>
+                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>24.</td>
+                            <td>
+                                <div class="row m-0">
+                                    The Competitive Situation of the Cheminformatics Industry Based on Porter&#039;s Model in Iran&nbsp;
+                                    <span class="label label-success">2022</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='adeleh'>Adeleh Asemi Zavareh</a></div>                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>SAGE OPEN</div>
+                                    </div>
+                                                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">DOI :</div>
+                                        <div>10.1177/21582440221134604</div>
+                                    </div>
+                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>25.</td>
+                            <td>
+                                <div class="row m-0">
+                                    Infoecology of the deep learning and smart manufacturing: thematic and concept interactions&nbsp;
+                                    <span class="label label-success">2022</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='adeleh'>Adeleh Asemi Zavareh</a></div>                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>LIBRARY HI TECH</div>
+                                    </div>
+                                                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">DOI :</div>
+                                        <div>10.1108/LHT-08-2021-0252</div>
+                                    </div>
+                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>26.</td>
+                            <td>
+                                <div class="row m-0">
+                                    Infoecology of the deep learning and smart manufacturing: thematic and concept interactions&nbsp;
+                                    <span class="label label-success">2021</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='adeleh'>Adeleh Asemi Zavareh</a></div>                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>LIBRARY HI TECH</div>
+                                    </div>
+                                                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">DOI :</div>
+                                        <div>10.1108/LHT-08-2021-0252</div>
+                                    </div>
+                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>27.</td>
+                            <td>
+                                <div class="row m-0">
+                                    Evaluating ASEAN E-commerce Laws Using Fuzzy Multi-Criteria Decision Making&nbsp;
+                                    <span class="label label-success">2021</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='adeleh'>Adeleh Asemi Zavareh</a></div>                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>ADVANCES IN DECISION SCIENCES</div>
+                                    </div>
+                                                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>28.</td>
+                            <td>
+                                <div class="row m-0">
+                                    Experimental Analysis in Hadoop MapReduce: A Closer Look at Fault Detection and Recovery Techniques&nbsp;
+                                    <span class="label label-success">2021</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='sitihafizah'>Siti Hafizah Binti Ab Hamid</a>, <a href='asmiza'>Asmiza Binti Abdul Sani</a>, <a href='zati'>Zati Hakim Binti Azizul Hasan</a>, <a href='nasuha'>Nur Nasuha Binti Mohd Daud</a>, <a href='hazrina'>Hazrina Binti Sofian</a>, <a href='adeleh'>Adeleh Asemi Zavareh</a></div>                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>SENSORS</div>
+                                    </div>
+                                                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">DOI :</div>
+                                        <div>10.3390/s21113799</div>
+                                    </div>
+                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>29.</td>
+                            <td>
+                                <div class="row m-0">
+                                    Compliance with Malaysian Personal Data Protection Act 2010 by banking and financial institutions, a legal survey on privacy policies&nbsp;
+                                    <span class="label label-success">2021</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='adeleh'>Adeleh Asemi Zavareh</a></div>                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>International Review of Law, Computers &amp; Technology</div>
+                                    </div>
+                                                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>30.</td>
+                            <td>
+                                <div class="row m-0">
+                                    The rise of traffic classification in IoT networks: A survey&nbsp;
+                                    <span class="label label-success">2020</span>
+                                </div>
+
+                                                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>JOURNAL OF NETWORK AND COMPUTER APPLICATIONS</div>
+                                    </div>
+                                                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>31.</td>
+                            <td>
+                                <div class="row m-0">
+                                    A systematic review of modalities in computer-based interventions (CBIs) for language comprehension and decoding skills of children with autism spectrum disorder (ASD).&nbsp;
+                                    <span class="label label-success">2020</span>
+                                </div>
+
+                                                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>Universal Access in the Information Society</div>
+                                    </div>
+                                                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>32.</td>
+                            <td>
+                                <div class="row m-0">
+                                    The rise of traffic classification in IoT networks: A survey&nbsp;
+                                    <span class="label label-success">2020</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='badrul'>Nor Badrul Anuar Bin Juma'at</a>, <a href='adeleh'>Adeleh Asemi Zavareh</a></div>                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>JOURNAL OF NETWORK AND COMPUTER APPLICATIONS</div>
+                                    </div>
+                                                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>33.</td>
+                            <td>
+                                <div class="row m-0">
+                                    Towards Standard Information Privacy, Innovations of the new General Data Protection Regulation&nbsp;
+                                    <span class="label label-success">2019</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='alii'>Ali Alibeigi Beni</a>, <a href='adeleh'>Adeleh Asemi Zavareh</a>, <a href='ershadulkarim'>Mohammad Ershadul Karim</a></div>                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>Library Philosophy and Practice</div>
+                                    </div>
+                                                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>34.</td>
+                            <td>
+                                <div class="row m-0">
+                                    Meta-analysis of evaluation methods and metrics used in context-aware scholarly recommender systems&nbsp;
+                                    <span class="label label-success">2019</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='salwa'>Siti Salwah Binti Salim</a>, <a href='adeleh'>Adeleh Asemi Zavareh</a></div>                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>Knowledge and Information Systems,</div>
+                                    </div>
+                                                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>35.</td>
+                            <td>
+                                <div class="row m-0">
+                                    Adaptive neuro-fuzzy inference system for evaluating dysarthric automatic speech recognition (ASR) systems: a case study on MVML-based ASR&nbsp;
+                                    <span class="label label-success">2019</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='adeleh'>Adeleh Asemi Zavareh</a></div>                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>SOFT COMPUTING</div>
+                                    </div>
+                                                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">DOI :</div>
+                                        <div>10.1007/s00500-018-3013-4</div>
+                                    </div>
+                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>36.</td>
+                            <td>
+                                <div class="row m-0">
+                                    Adaptive neuro-fuzzy inference system for evaluating dysarthric automatic speech recognition (ASR) systems: a case study on MVML-based ASR&nbsp;
+                                    <span class="label label-success">2018</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='salwa'>Siti Salwah Binti Salim</a>, <a href='adeleh'>Adeleh Asemi Zavareh</a></div>                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>Soft Computing</div>
+                                    </div>
+                                                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>37.</td>
+                            <td>
+                                <div class="row m-0">
+                                    Use of Social Bookmarking Tools (SBT) in knowledge sharing&nbsp;
+                                    <span class="label label-success">2018</span>
+                                </div>
+
+                                                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>Journal of Social Network Analysis and Mining</div>
+                                    </div>
+                                                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>38.</td>
+                            <td>
+                                <div class="row m-0">
+                                    A fuzzy inference system for skeletal age assessment in living individual&nbsp;
+                                    <span class="label label-success">2017</span>
+                                </div>
+
+                                                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>INTERNATIONAL JOURNAL OF FUZZY SYSTEMS</div>
+                                    </div>
+                                                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>39.</td>
+                            <td>
+                                <div class="row m-0">
+                                    Speech pronunciation practice system for speech-impaired children: a systematic review of impacts and functionality&nbsp;
+                                    <span class="label label-success">2017</span>
+                                </div>
+
+                                                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>UNIVERSAL ACCESS IN THE INFORMATION SOCIETY</div>
+                                    </div>
+                                                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>40.</td>
+                            <td>
+                                <div class="row m-0">
+                                    Link analysis of iranian steel industry (isi), using web impact factor (wif) and clustering method&nbsp;
+                                    <span class="label label-success">2017</span>
+                                </div>
+
+                                                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>CIS Iron and Steel Review</div>
+                                    </div>
+                                                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>41.</td>
+                            <td>
+                                <div class="row m-0">
+                                    A speech pronunciation practice system for speech-impaired children: A study to measure its success&nbsp;
+                                    <span class="label label-success">2016</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='salwa'>Siti Salwah Binti Salim</a>, <a href='mumtaz'>Mumtaz Begum Binti Peer Mustafa</a>, <a href='adeleh'>Adeleh Asemi Zavareh</a></div>                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>Research in Developmental Disabilities</div>
+                                    </div>
+                                                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>42.</td>
+                            <td>
+                                <div class="row m-0">
+                                    Intelligent Decision Support Systems for Forecasting Crude Oil Prices&nbsp;
+                                    <span class="label label-success">2015</span>
+                                </div>
+
+                                                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>International Journal of Information Science and Management</div>
+                                    </div>
+                                                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>43.</td>
+                            <td>
+                                <div class="row m-0">
+                                    Evaluation of B2B IIM Critical Success Factors Using a Fuzzy Decision Analysis Method&nbsp;
+                                    <span class="label label-success">2015</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='adeleh'>Adeleh Asemi Zavareh</a>, <a href='alii'>Ali Alibeigi Beni</a></div>                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>2015 9TH INTERNATIONAL CONFERENCE ON E-COMMERCE IN DEVELOPING COUNTRIES: WITH FOCUS ON E-BUSINESS (ECDC)</div>
+                                    </div>
+                                                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>44.</td>
+                            <td>
+                                <div class="row m-0">
+                                    Heuristics to Evaluate Interactive Systems for Children with Autism Spectrum Disorder (ASD)&nbsp;
+                                    <span class="label label-success">2015</span>
+                                </div>
+
+                                                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>PLOS ONE</div>
+                                    </div>
+                                                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>45.</td>
+                            <td>
+                                <div class="row m-0">
+                                    Intelligent MCDM method for supplier selection under fuzzy environment&nbsp;
+                                    <span class="label label-success">2014</span>
+                                </div>
+
+                                                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>International Journal of Information Science and Management</div>
+                                    </div>
+                                                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>46.</td>
+                            <td>
+                                <div class="row m-0">
+                                    Fuzzy Multi-Criteria Evaluation of Research Materials Based On Learning Style&nbsp;
+                                    <span class="label label-success">2014</span>
+                                </div>
+
+                                                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>ARPN Journal of Engineering and Applied Sciences</div>
+                                    </div>
+                                                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>47.</td>
+                            <td>
+                                <div class="row m-0">
+                                    Optimal Harmonization of Out-Network Traffic Control Regulations in Social Networks&nbsp;
+                                    <span class="label label-success">2014</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='abmunir'>Abu Bakar Bin Munir</a>, <a href='adeleh'>Adeleh Asemi Zavareh</a></div>                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>New Marketing Research Journal</div>
+                                    </div>
+                                                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>48.</td>
+                            <td>
+                                <div class="row m-0">
+                                    Social Interactive Media Tools and Knowledge Sharing: A Case Study&nbsp;
+                                    <span class="label label-success">2013</span>
+                                </div>
+
+                                                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>arXiv preprint</div>
+                                    </div>
+                                                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>49.</td>
+                            <td>
+                                <div class="row m-0">
+                                    The Role of Management Information System (MIS) and Decision Support System (DSS) for Manager&amp;#39;s Decision Making Process&nbsp;
+                                    <span class="label label-success">2011</span>
+                                </div>
+
+                                                                <br />
+                                                                    <div class="row m-0">
+                                        <div class="col-sm-1 p-0">Source :</div>
+                                        <div>International Journal of Business &amp; Management</div>
+                                    </div>
+                                                                                            </td>
+                        </tr>
+                                        </tbody>
+            </table>
+        </div>
+    </div>
+    <!--End Panel-->
+        
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#list_of_pub_B').DataTable({
+                "sPaginationType": "full_numbers",
+                "bLengthChange": false,
+                "bFilter": false,
+                "bSort": false,
+                "bInfo": true,
+                "bAutoWidth": false,
+                "oLanguage": {
+                    "sEmptyTable": '',
+                    "sInfoEmpty": ''
+                },
+                "sEmptyTable": "Loading data from server",
+                "sDom": '<"filterRecords"l><"top">rt<"bottom"i <"paging_right"p>><"clear">',
+                "fnDrawCallback": function(oSettings) {
+                    if (oSettings._iDisplayLength >= oSettings.fnRecordsDisplay()) {
+                        $(oSettings.nTableWrapper).find('.dataTables_paginate').hide();
+                    }
+                }
+            });
+        });
+    </script>
+    
+    <!--Start Panel-->
+    <div class="panel panel-border-top widget-project">
+        <div class="panel-heading widget-h bl-default">
+            <span>BOOK</span>
+        </div>
+        <div class="panel-body">
+            <table class="table table-striped dataTable no-footer" id="list_of_pub_B">
+                <thead>
+                    <tr valign="top"> 
+                        <th width="3%">NO</th>
+                        <th>DETAILS OF BOOK</th>
+                    </tr>
+                </thead>
+                <tbody>
+                                            <tr>
+                            <td>1.</td>
+                            <td>
+                                <div class="row m-0">
+                                    Information systems&nbsp;
+                                    <span class="label label-success">2011</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='adeleh'>Adeleh Asemi Zavareh</a></div>                                <br />
+                                                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>2.</td>
+                            <td>
+                                <div class="row m-0">
+                                    Information Literacy Instruction&nbsp;
+                                    <span class="label label-success">2011</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='adeleh'>Adeleh Asemi Zavareh</a></div>                                <br />
+                                                                                            </td>
+                        </tr>
+                                        </tbody>
+            </table>
+        </div>
+    </div>
+    <!--End Panel-->
+        
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#list_of_pub_P').DataTable({
+                "sPaginationType": "full_numbers",
+                "bLengthChange": false,
+                "bFilter": false,
+                "bSort": false,
+                "bInfo": true,
+                "bAutoWidth": false,
+                "oLanguage": {
+                    "sEmptyTable": '',
+                    "sInfoEmpty": ''
+                },
+                "sEmptyTable": "Loading data from server",
+                "sDom": '<"filterRecords"l><"top">rt<"bottom"i <"paging_right"p>><"clear">',
+                "fnDrawCallback": function(oSettings) {
+                    if (oSettings._iDisplayLength >= oSettings.fnRecordsDisplay()) {
+                        $(oSettings.nTableWrapper).find('.dataTables_paginate').hide();
+                    }
+                }
+            });
+        });
+    </script>
+    
+    <!--Start Panel-->
+    <div class="panel panel-border-top widget-project">
+        <div class="panel-heading widget-h bl-default">
+            <span>PROCEEDING</span>
+        </div>
+        <div class="panel-body">
+            <table class="table table-striped dataTable no-footer" id="list_of_pub_P">
+                <thead>
+                    <tr valign="top"> 
+                        <th width="3%">NO</th>
+                        <th>DETAILS OF PROCEEDING</th>
+                    </tr>
+                </thead>
+                <tbody>
+                                            <tr>
+                            <td>1.</td>
+                            <td>
+                                <div class="row m-0">
+                                    Comparative survey on the ways of access to managerial information&nbsp;
+                                    <span class="label label-success">2022</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='adeleh'>Adeleh Asemi Zavareh</a></div>                                <br />
+                                                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>2.</td>
+                            <td>
+                                <div class="row m-0">
+                                    The AHP-TOPSIS based DSS for selecting suppliers of information resources&nbsp;
+                                    <span class="label label-success">2022</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='adeleh'>Adeleh Asemi Zavareh</a></div>                                <br />
+                                                                                            </td>
+                        </tr>
+                                                <tr>
+                            <td>3.</td>
+                            <td>
+                                <div class="row m-0">
+                                    A Fuzzy Inference Expert System for detecting and controlling of rice weeds&nbsp;
+                                    <span class="label label-success">2022</span>
+                                </div>
+
+                                <div class='row m-0'>Author(s) : <a href='adeleh'>Adeleh Asemi Zavareh</a></div>                                <br />
+                                                                                            </td>
+                        </tr>
+                                        </tbody>
+            </table>
+        </div>
+    </div>
+    <!--End Panel-->
+                            <!-- End publication -->
+                    </div>
+
+                    <div class="tab-pane fade" id="tabResearch">
+                        <!-- Start research grant -->
+                        <script type="text/javascript" charset="utf-8">
+$(document).ready(function() {
+	$('#list_of_project').DataTable( {
+		"sPaginationType": "full_numbers",
+		"bLengthChange": false,
+		"bFilter": false,
+		"bSort": false,
+		"bInfo": true,
+		"bAutoWidth": false,
+		"oLanguage": {
+			"sEmptyTable": '',
+			"sInfoEmpty": ''
+		},
+		"sEmptyTable": "Loading data from server",
+		"sDom": '<"filterRecords"l><"top">rt<"bottom"i <"paging_right"p>><"clear">',
+		"fnDrawCallback": function(oSettings) {                 
+			if (oSettings._iDisplayLength >= oSettings.fnRecordsDisplay()) {
+				$(oSettings.nTableWrapper).find('.dataTables_paginate').hide();
+			}
+		}
+	});
+	
+	$('#list_of_project_cor').DataTable( {
+		"sPaginationType": "full_numbers",
+		"bLengthChange": false,
+		"bFilter": false,
+		"bSort": false,
+		"bInfo": true,
+		"bAutoWidth": false,
+		"oLanguage": {
+			"sEmptyTable": '',
+			"sInfoEmpty": ''
+		},
+		"sEmptyTable": "Loading data from server",
+		"sDom": '<"filterRecords"l><"top">rt<"bottom"i <"paging_right"p>><"clear">',
+		"fnDrawCallback": function(oSettings) {                 
+			if (oSettings._iDisplayLength >= oSettings.fnRecordsDisplay()) {
+				$(oSettings.nTableWrapper).find('.dataTables_paginate').hide();
+			}
+		}
+	});
+});
+</script>
+
+<!--Start Panel-->
+<div class="panel panel-border-top widget-project">
+	<!--End Panel-->
+
+<!--Start Panel-->
+<div class="panel panel-border-top widget-project">
+	<div class="panel-heading widget-h bl-default">
+		<span>RESEARCH COLLABORATOR</span>
+	</div>
+	<div class="panel-body">
+		<table class="table table-striped dataTable no-footer" id="list_of_project_cor">
+		<thead>
+			<tr valign="top"> 
+				<th>GRANT</th>
+				<th width="20%">PROGRESS</th>
+				<th width="2%">STATUS</th>
+			</tr>
+		</thead>
+		<tbody>
+					<tr>
+				<td width="24%">
+					<div class="row m-0">Cross Software Project&amp;amp;#039;s Code Anomaly Prediction</div>
+					
+					
+<div class='row m-0'>Researcher(s) : <a href='asmiza'>Dr. Asmiza Binti Abdul Sani</a>, <a href='hazrina'>Dr. Hazrina Binti Sofian</a>, <a href='adeleh'>Dr. Adeleh Asemi Zavareh</a>, <a href='hema'>Dr. Hema A/p Subramaniam</a></div>									</td>
+				<td>
+					<div class="progress progress-striped active" style="height:10px; margin:5px 0 0 0;">
+						<div class="progress-bar progress-bar-success" style="width:100%"></div>
+					</div>													
+				</td>
+				<td><span class="label label-success">end</span></td>
+			</tr>
+				</tbody>
+		</table>
+	</div>
+</div>
+<!--End Panel-->
+                        <!-- End research grant -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Content -->
+</div>
+
+
+
+
+<script>
+function activaTab(tab) {
+    $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+}
+</script>
+
+</div>
+<!-- End Content -->
+
+<!-- Start Footer -->
+<footer class="footer-bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="footer_menu" style="padding-bottom: 20px;">
+                    <h4><strong>MAIN LINKS</strong></h4>
+                    <ul>
+                        <li><a href="https://um.edu.my/" target="_blank" rel="noopener noreferrer">UM Website</a></li>
+                        <li><a href="https://ptm.edu.my/" target="_blank" rel="noopener noreferrer">ICT Website</a></li>
+                        <li><a href="https://jpphb.um.edu.my/" target="_blank" rel="noopener noreferrer">JPPHB</a></li>
+                        <li><a href="https://umresearch.um.edu.my/" target="_blank" rel="noopener noreferrer">UM Research</a></li>
+                        <li><a href="https://um.edu.my/about-um/contact-us" target="_blank" rel="noopener noreferrer">Contact Us</a></li>
+                        <li><a href="https://um.edu.my/Sitemap" target="_blank" rel="noopener noreferrer">Site Map</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="footer_menu" style="padding-bottom: 20px;">
+                    <h4><strong>RESOURCES</strong></h4>
+                    <ul>
+                        <li><a href="https://www.umlib.um.edu.my/" target="_blank" rel="noopener noreferrer">UM Library</a></li>
+                        <li><a href="https://umconference.um.edu.my/" target="_blank" rel="noopener noreferrer">UM Conference</a></li>
+                        <li><a href="https://e-journal.um.edu.my/" target="_blank" rel="noopener noreferrer">UM e-Journal</a></li>
+                        <li><a href="https://repository.um.edu.my/" target="_blank" rel="noopener noreferrer">UM Repository</a></li>
+                        <li><a href="https://um.edu.my/resources/digital-resources" target="_blank" rel="noopener noreferrer">Digital Resource</a></li>
+                        <li><a href="https://um.edu.my/about-um/um-fact-sheet" target="_blank" rel="noopener noreferrer">UM Facts</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="footer_menu" style="padding-bottom: 20px;">
+                    <h4><strong>RELATED LINKS</strong></h4>
+                    <ul>
+                        <li><a href="https://www.researcherid.com/" target="_blank" rel="noopener noreferrer">ResearcherID</a></li>
+                        <li><a href="https://www.scopus.com/" target="_blank" rel="noopener noreferrer">SCOPUS</a></li>
+                        <li><a href="https://webofknowledge.com/" target="_blank" rel="noopener noreferrer">Web of Science</a></li>
+                        <li><a href="https://orcid.org/" target="_blank" rel="noopener noreferrer">ORCID</a></li>
+                        <li><a href="https://helpdesk.um.edu.my/" target="_blank" rel="noopener noreferrer">UM Helpdesk</a></li>
+                        <li><a href="https://um.edu.my/faq/ict" target="_blank" rel="noopener noreferrer">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center" style="padding-top: 30px;">
+                <a href="https://um.edu.my/privacy-policy/privacy-policy" target="_blank" rel="noopener noreferrer" style="color: #CCC">Privacy Policy</a> &nbsp;&nbsp;|&nbsp;&nbsp; 
+                <a href="https://um.edu.my/privacy-policy/site-credits" target="_blank" rel="noopener noreferrer" style="color: #CCC">Site Credits</a> &nbsp;&nbsp;|&nbsp;&nbsp;    
+                <a href="https://um.edu.my/privacy-policy/disclaimer" target="_blank" rel="noopener noreferrer" style="color: #CCC">Disclaimer</a> &nbsp;&nbsp;|&nbsp;&nbsp;  
+                <a href="https://um.edu.my/privacy-policy/security-policy" target="_blank" rel="noopener noreferrer" style="color: #CCC">Security Policy</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-copyright">
+        <div class="container">
+            <p>
+                Copyright © <span id="current-year"></span> <a href="http://ict.um.edu.my/" target="_blank" rel="noopener noreferrer">Centre for Information Technology, University of Malaya</a>. All rights reserved.
+            </p>
+        </div>
+    </div>
+    
+    <a id="back-to-top" href="#" class="btn btn-primary btn-lg back-to-top" role="button" title="Back to top" data-toggle="tooltip" data-placement="top">
+        <span class="glyphicon glyphicon-chevron-up"></span>
+    </a>
+</footer>
+
+<!-- Javascript -->
+<script>
+    // Set current year
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    // Google Analytics
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    
+    ga('create', 'UA-2530970-1', 'auto');
+    ga('send', 'pageview');
+
+    $(document).ready(function(){
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 50) {
+                $('#back-to-top').fadeIn();
+            } else {
+                $('#back-to-top').fadeOut();
+            }
+        });
+
+        // scroll body to 0px on click
+        $('#back-to-top').click(function () {
+            $('#back-to-top').tooltip('hide');
+            $('body,html').animate({scrollTop: 0}, 800);
+            return false;
+        });
+
+        $('#back-to-top').tooltip('show');
+    });
+</script>
+</body>
+</html>
