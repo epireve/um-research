@@ -1,124 +1,112 @@
-# UM Research Supervisor Profile Enrichment: Implementation Summary
+# UM Research Supervisor Matching: Implementation Summary
 
 ## Overview
 
-This project provides tools to enrich research supervisor profiles by extracting information from HTML sources and updating YAML profiles. The implementation has been designed with the following elements:
+This project provides a simple matching system to help students find suitable research supervisors based on research interests. The implementation consists of two main components:
 
-1. **Data Extraction**: The `processor.py` script extracts data from HTML sources and saves it to `data/extracted/{user_id}_extracted.yaml`
-2. **Prompt Generation**: The `gemini_integration.py` script creates prompts for Google Gemini 2.5 Pro
-3. **Profile Update**: Using Google Gemini 2.5 Pro to merge the extracted data with the existing profiles
-4. **Image Extraction**: The `scripts/extract_images.py` script extracts profile images from base64-encoded data
+1. **Data Collection and Preparation**: Comprehensive supervisor profiles with research interests, expertise, and publications
+2. **Matching System**: A simple web UI and backend API that matches students with supervisors based on defined criteria
 
-## Technical Details
+## Matching Criteria
 
-### Data Extraction (`processor.py`)
+### Primary Matching Criteria
+- Research interests
+- Expertise areas
+- Publications (journal articles)
 
-The processor script performs the following functions:
+### Secondary Ranking Criteria
+- Projects
+- Supervised students
+- Conference publications
+- Book chapters
+- Roles
 
-1. Reads YAML profiles from `data/profiles/{user_id}.yaml`
-2. Processes HTML sources from three directories:
-   - `data/raw/html/profile/`: Contains profile HTML pages
-   - `data/raw/html/cv/`: Contains CV HTML pages
-   - `data/raw/html/dashboard/`: Contains dashboard HTML pages
+## Technical Implementation
 
-3. Extracts various information types:
-   - Publications (academic journals, book chapters, proceedings)
-   - Contact information
-   - Social and academic profiles
-   - Research interests
-   - Academic background
+### Data Preparation
 
-4. Saves the extracted data to `data/extracted/{user_id}_extracted.yaml`
+The data preparation phase has been completed, including:
 
-### Profile Data Parsing (`parse_results.py`)
+1. **Profile Data Collection**: Supervisor profiles stored in `profiles/{userID}.yaml`
+2. **Data Enrichment**: AI-assisted merging of data from multiple sources
+3. **Profile Images**: Extraction of profile images from base64 data to `data/images/{userID}.jpeg`
+4. **Standardization**: Consistent data format following the defined schema
 
-The parsing script processes HTML search results to extract structured supervisor data:
+### Profile Structure
 
-1. Reads the HTML from `data/raw/html/search_result.html`
-2. Parses the HTML to extract information about researchers, including:
-   - Names, departments, and faculties
-   - Contact information (email, phone)
-   - Areas of expertise
-   - Profile links and user IDs
-   - Base64-encoded profile images
-3. Saves the parsed data to `data/reference/supervisor_profiles.csv`
+Each supervisor profile contains:
 
-### Image Extraction (`scripts/extract_images.py`)
-
-The image extraction script processes base64-encoded images from the supervisor CSV file:
-
-1. Reads the CSV file from `data/reference/supervisor_profiles.csv`
-2. For each supervisor record:
-   - Extracts the base64-encoded image data from the "Image Source" column
-   - Decodes the base64 string to binary image data
-   - Saves the image as `data/images/{userID}.jpeg`
-3. Handles common variations in base64 data format (e.g., removing data:image/jpeg;base64, prefix)
-4. Provides detailed logging throughout the process
-5. Reports summary statistics on successfully extracted images
-
-The script successfully extracted 83 profile images, ensuring that each supervisor has a correctly named image file available for use in the dashboard.
-
-### Prompt Generation (`gemini_integration.py`)
-
-This script creates prompts for Google Gemini 2.5 Pro by:
-
-1. For each `{user_id}_extracted.yaml` file, reading both the original profile and the extracted data
-2. Creating a prompt with specific instructions for merging the data
-3. Saving the prompts to the `data/prompts/` directory
-
-### Profile Update (Using Google Gemini 2.5 Pro)
-
-The final step involves using Google Gemini 2.5 Pro to:
-
-1. Take the prompt from `data/prompts/{user_id}_prompt.txt`
-2. Intelligently merge the extracted data with the existing profile
-3. Output an updated YAML file that can replace the original profile
-
-## Implementation Notes
-
-1. **Dependencies**:
-   - Python 3.6+
-   - markdownify: For converting HTML to Markdown
-   - pyyaml: For handling YAML files
-   - beautifulsoup4: For HTML parsing
-   - Pillow: For image processing
-
-2. **HTML Processing**:
-   - The HTML files are converted to Markdown to remove markup noise
-   - Regular expressions are used to identify sections and extract relevant information
-
-3. **Data Handling**:
-   - All extracted data is carefully formatted as YAML
-   - Care is taken to avoid duplicate information
-   - The final merge respects the structure of the original YAML files
-
-4. **Image Processing**:
-   - Base64-encoded images are extracted from the CSV file using `scripts/extract_images.py`
-   - Images are saved as JPEG files with consistent naming convention: `{userID}.jpeg`
-   - File names correspond to researcher user IDs for easy association
-   - All images are stored in the `data/images/` directory as specified in the repository structure
-   - The process handles different image formats embedded in the base64 data
-
-## Troubleshooting
-
-If you encounter issues with dependencies, try installing them manually:
-
-```bash
-pip install pyyaml markdownify beautifulsoup4 pillow
+```yaml
+name: "Dr. Example Supervisor"
+position: "Associate Professor"
+department: "Software Engineering"
+university: "University of Malaya"
+contact:
+  email: "example@um.edu.my"
+  office: "A-12-12"
+  phone: "+60-3-7967-1234"
+academic_background:
+  - degree: "Ph.D."
+    field: "Computer Science"
+    institution: "Example University"
+    year: 2010
+research_interests:
+  - "Software Engineering"
+  - "Machine Learning"
+expertise:
+  - "Software Quality Assurance"
+  - "Web Application Development"
+publications:
+  - title: "Example Publication Title"
+    authors: "Supervisor, E., et al."
+    venue: "Journal of Software Engineering"
+    year: 2020
+    doi: "10.1234/jse.2020.1234"
+# Other fields for secondary ranking
 ```
 
-If there are issues with file permissions or paths, ensure that:
-1. The `data/profiles/` directory exists and is writable
-2. The `data/raw/html/` directory contains the HTML files
-3. The `data/images/` directory exists and is writable
-4. Python has permission to read and write in these directories
+### Matching Algorithm (To Be Implemented)
+
+The matching algorithm will:
+
+1. Compare student interests with supervisor research interests using text similarity
+2. Match expertise areas relevant to the student's interests
+3. Consider publication relevance to the research topic
+4. Use secondary criteria for further ranking
+
+### Web Interface (To Be Implemented)
+
+The web interface will allow students to:
+
+1. Enter their research interests as free text
+2. Specify relevant expertise areas
+3. View matching supervisors with scores
+4. Access detailed supervisor profiles
 
 ## Next Steps
 
-Once the environment is properly set up, you can:
+1. **Implement Core Matching Algorithm**:
+   - Text similarity for research interests
+   - Expertise matching function
+   - Publication relevance scoring
 
-1. Run `python -m scripts.processor` to extract data
-2. Run `python -m scripts.parse_results` to parse HTML search results
-3. Run `python -m scripts.extract_images` to extract profile images
-4. Run `python -m scripts.gemini_integration` to generate prompts
-5. Use Google Gemini 2.5 Pro to update the profiles 
+2. **Develop Web UI**:
+   - Simple search interface
+   - Results display with match scores
+   - Supervisor profile view
+
+3. **Create Backend API**:
+   - Matching endpoint with filtering options
+   - Profile data access
+
+## Tools Used
+
+- **Data Processing**: Python scripts for extraction and standardization
+- **Image Processing**: Python script for extracting profile images
+- **Profile Storage**: YAML format for structured data
+- **Web Framework**: Next.js with App Router (planned)
+- **Backend**: Node.js API for matching algorithm (planned)
+
+## Conclusion
+
+The data preparation phase is complete, with comprehensive supervisor profiles ready for the matching system. The next phase focuses on implementing the matching algorithm and building a simple UI to help students find suitable research supervisors based on their interests. 
