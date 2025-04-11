@@ -21,7 +21,7 @@ if not API_KEY:
     sys.exit(1)
 
 MODEL_NAME = os.getenv("GEMINI_MODEL", "gemini-2.5-pro-exp-03-25")
-PROMPT_DIR = os.getenv("PROMPT_DIR", "gemini_prompts")
+PROMPT_DIR = os.getenv("PROMPT_DIR", "data/prompts")
 EXTRACTED_DATA_SUFFIX = os.getenv("EXTRACTED_DATA_SUFFIX", "_extracted.yaml")
 
 # Configure the Gemini API client with the new API structure
@@ -43,22 +43,23 @@ def update_profile_with_gemini(user_id):
     # Call the Gemini API with updated API structure
     print(f"   Calling Gemini API with model {MODEL_NAME}...")
     client = genai.Client(api_key=API_KEY)
+    model = client.get_genai_model(MODEL_NAME)
 
     try:
-        response = client.models.generate_content(model=MODEL_NAME, contents=prompt)
-
-        # Extract YAML content from response
-        yaml_content = response.text
+        response = model.generate_content([prompt])
+        response_text = response.text
 
         # Validate that it's valid YAML
         try:
-            updated_profile = yaml.safe_load(yaml_content)
+            updated_profile = yaml.safe_load(response_text)
 
             # Save the updated profile
-            profile_path = f"profiles/{user_id}.yaml"
+            profile_path = f"data/profiles/{user_id}.yaml"
 
             # Create a backup of the original file
-            backup_path = f"profiles/{user_id}.yaml.bak"
+            backup_path = f"data/backups/profiles/{user_id}.yaml.bak"
+            os.makedirs(os.path.dirname(backup_path), exist_ok=True)
+
             if os.path.exists(profile_path):
                 with open(profile_path, "r", encoding="utf-8") as src:
                     with open(backup_path, "w", encoding="utf-8") as dst:
@@ -73,37 +74,42 @@ def update_profile_with_gemini(user_id):
 
             print(f"✅ Successfully updated profile for {user_id}")
 
-            # Clean up the extracted data file
-            extracted_file = f"profiles/{user_id}{EXTRACTED_DATA_SUFFIX}"
+            # Optionally clean up the extracted data file
+            extracted_file = f"data/extracted/{user_id}{EXTRACTED_DATA_SUFFIX}"
             if os.path.exists(extracted_file):
-                os.remove(extracted_file)
-                print(f"   Removed extracted data file for {user_id}")
+                clean_up = input(
+                    f"   Remove extracted data file for {user_id}? (y/n): "
+                )
+                if clean_up.lower() == "y":
+                    os.remove(extracted_file)
+                    print(f"   Removed extracted data file for {user_id}")
 
             return True
 
-        except yaml.YAMLError:
-            print(f"❌ Error: Gemini response for {user_id} is not valid YAML")
-            print(
-                f"   Saving raw response to profiles/{user_id}_raw_response.txt for review"
-            )
+        except yaml.YAMLError as e:
+            print(f"❌ Error: Invalid YAML generated for {user_id}")
+            print(f"Error details: {str(e)}")
 
-            with open(
-                f"profiles/{user_id}_raw_response.txt", "w", encoding="utf-8"
-            ) as f:
-                f.write(yaml_content)
-
+            # Save the raw response for debugging
+            raw_path = f"data/backups/raw_responses/{user_id}_raw.txt"
+            os.makedirs(os.path.dirname(raw_path), exist_ok=True)
+            with open(raw_path, "w", encoding="utf-8") as f:
+                f.write(response_text)
+            print(f"   Raw response saved to {raw_path}")
             return False
 
     except Exception as e:
-        print(f"❌ Error calling Gemini API for {user_id}: {e}")
+        print(f"❌ Error calling Gemini API: {str(e)}")
         return False
 
 
 def main():
     """Process all prompt files and update profiles."""
     # Create directories if they don't exist
-    os.makedirs("profiles", exist_ok=True)
+    os.makedirs("data/profiles", exist_ok=True)
     os.makedirs(PROMPT_DIR, exist_ok=True)
+    os.makedirs("data/backups/profiles", exist_ok=True)
+    os.makedirs("data/backups/raw_responses", exist_ok=True)
 
     # Check if prompt directory exists
     if not os.path.exists(PROMPT_DIR):

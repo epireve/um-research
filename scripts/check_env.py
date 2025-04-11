@@ -5,6 +5,7 @@ Simple script to check environment variables
 
 import os
 import sys
+from pathlib import Path
 
 
 def main():
@@ -22,32 +23,48 @@ def main():
     model_name = os.environ.get("GEMINI_MODEL")
     print(f"GEMINI_MODEL: {model_name or 'Not found'}")
 
-    prompt_dir = os.environ.get("PROMPT_DIR")
-    print(f"PROMPT_DIR: {prompt_dir or 'Not found'}")
+    prompt_dir = os.environ.get("PROMPT_DIR", "data/prompts")
+    print(f"PROMPT_DIR: {prompt_dir}")
 
     # Check for prompt files
-    if os.path.exists("gemini_prompts"):
-        prompt_files = [
-            f for f in os.listdir("gemini_prompts") if f.endswith("_prompt.txt")
-        ]
-        print(
-            f"\nFound {len(prompt_files)} prompt files in 'gemini_prompts' directory:"
-        )
-        for file in prompt_files:
-            print(f"  - {file}")
+    prompt_path = Path(prompt_dir)
+    if prompt_path.exists():
+        prompt_files = list(prompt_path.glob("*_prompt.txt"))
+        print(f"\nFound {len(prompt_files)} prompt files in '{prompt_dir}' directory:")
+        for file in prompt_files[:5]:  # Show just the first 5
+            print(f"  - {file.name}")
+        if len(prompt_files) > 5:
+            print(f"  ... and {len(prompt_files) - 5} more")
     else:
-        print("\nThe 'gemini_prompts' directory does not exist.")
+        print(f"\nThe '{prompt_dir}' directory does not exist.")
 
     # Check for profile files
-    if os.path.exists("profiles"):
-        profile_files = [f for f in os.listdir("profiles") if f.endswith(".yaml")]
-        print(f"\nFound {len(profile_files)} profile files in 'profiles' directory:")
+    profiles_path = Path("data/profiles")
+    if profiles_path.exists():
+        profile_files = list(profiles_path.glob("*.yaml"))
+        print(
+            f"\nFound {len(profile_files)} profile files in '{profiles_path}' directory:"
+        )
         for file in profile_files[:5]:  # Show just the first 5
-            print(f"  - {file}")
+            print(f"  - {file.name}")
         if len(profile_files) > 5:
             print(f"  ... and {len(profile_files) - 5} more")
     else:
-        print("\nThe 'profiles' directory does not exist.")
+        print(f"\nThe '{profiles_path}' directory does not exist.")
+
+    # Check for extracted files
+    extracted_path = Path("data/extracted")
+    if extracted_path.exists():
+        extracted_files = list(extracted_path.glob("*_extracted.yaml"))
+        print(
+            f"\nFound {len(extracted_files)} extracted files in '{extracted_path}' directory:"
+        )
+        for file in extracted_files[:5]:  # Show just the first 5
+            print(f"  - {file.name}")
+        if len(extracted_files) > 5:
+            print(f"  ... and {len(extracted_files) - 5} more")
+    else:
+        print(f"\nThe '{extracted_path}' directory does not exist.")
 
     # Check available packages
     print("\nChecking for required packages:")
@@ -70,18 +87,6 @@ def main():
         from dotenv import load_dotenv
 
         print("✅ python-dotenv is installed")
-
-        # Try to load the .env file
-        load_dotenv()
-        print("   .env file loaded")
-
-        # Check if API key was loaded from .env
-        api_key = os.environ.get("GEMINI_API_KEY")
-        if api_key:
-            print("   GEMINI_API_KEY loaded from .env file")
-        else:
-            print("   GEMINI_API_KEY not found in .env file")
-
     except ImportError:
         print("❌ python-dotenv is not installed")
 

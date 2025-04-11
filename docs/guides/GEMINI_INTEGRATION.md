@@ -30,34 +30,34 @@ The workflow consists of three steps:
 Run the processor script to extract information from HTML sources:
 
 ```bash
-python processor.py
+python -m src.processor.processor
 ```
 
-This creates `*_extracted.yaml` files in the profiles directory.
+This creates `*_extracted.yaml` files in the `data/extracted` directory.
 
 ### 2. Generate Prompts
 
 Generate prompts for the Gemini API:
 
 ```bash
-python gemini_integration.py
+python -m src.processor.gemini_integration
 ```
 
-This creates prompt files in the `gemini_prompts` directory.
+This creates prompt files in the `data/prompts` directory.
 
 ### 3. Update Profiles with Gemini
 
 Use the Gemini API to update the profiles:
 
 ```bash
-python gemini_update.py
+python -m src.processor.gemini_update
 ```
 
 This will:
 - Process each prompt file
 - Call the Gemini API
 - Update the profile YAML files
-- Create backups of the original files
+- Create backups of the original files in `data/backups/profiles`
 - Remove the extracted data files
 
 ## Troubleshooting
@@ -65,16 +65,19 @@ This will:
 If you encounter errors:
 
 1. **API Key Issues**: Ensure your API key is correctly set in the `.env` file
-2. **Model Availability**: If the specified model isn't available, try changing it in the `.env` file
-3. **YAML Parsing Errors**: Check the raw response files for any issues
+2. **Model Availability**: If the specified model isn't available, try changing it in the `.env` file:
+   ```
+   GEMINI_MODEL=gemini-1.5-pro
+   ```
+3. **YAML Parsing Errors**: Check the raw response files in `data/backups/raw_responses` for any issues
 
 ## Manual Fallback
 
 If the automatic update fails, you can:
 
-1. Copy the content from a prompt file in `gemini_prompts/`
+1. Copy the content from a prompt file in `data/prompts/`
 2. Paste it into the [Google Gemini web interface](https://gemini.google.com/)
-3. Copy the response and save it to the appropriate profile YAML file
+3. Copy the response and save it to the appropriate profile YAML file in `data/profiles/`
 
 ## Notes on the Gemini Model
 

@@ -47,7 +47,7 @@ if not API_KEY:
     )
 
 MODEL_NAME = os.getenv("GEMINI_MODEL", "gemini-2.5-pro-exp-03-25")
-PROMPT_DIR = os.getenv("PROMPT_DIR", "gemini_prompts")
+PROMPT_DIR = os.getenv("PROMPT_DIR", "data/prompts")
 EXTRACTED_DATA_SUFFIX = os.getenv("EXTRACTED_DATA_SUFFIX", "_extracted.yaml")
 
 # Configure the Gemini API client
@@ -81,10 +81,12 @@ def update_profile_with_gemini(user_id):
             updated_profile = yaml.safe_load(yaml_content)
 
             # Save the updated profile
-            profile_path = f"profiles/{user_id}.yaml"
+            profile_path = f"data/profiles/{user_id}.yaml"
 
             # Create a backup of the original file
-            backup_path = f"profiles/{user_id}.yaml.bak"
+            backup_path = f"data/backups/profiles/{user_id}.yaml.bak"
+            os.makedirs(os.path.dirname(backup_path), exist_ok=True)
+
             if os.path.exists(profile_path):
                 with open(profile_path, "r", encoding="utf-8") as src:
                     with open(backup_path, "w", encoding="utf-8") as dst:
@@ -100,36 +102,38 @@ def update_profile_with_gemini(user_id):
             print(f"✅ Successfully updated profile for {user_id}")
 
             # Clean up the extracted data file
-            extracted_file = f"profiles/{user_id}{EXTRACTED_DATA_SUFFIX}"
+            extracted_file = f"data/extracted/{user_id}{EXTRACTED_DATA_SUFFIX}"
             if os.path.exists(extracted_file):
                 os.remove(extracted_file)
                 print(f"   Removed extracted data file for {user_id}")
 
             return True
 
-        except yaml.YAMLError:
-            print(f"❌ Error: Gemini response for {user_id} is not valid YAML")
-            print(
-                f"   Saving raw response to profiles/{user_id}_raw_response.txt for review"
-            )
+        except yaml.YAMLError as e:
+            print(f"❌ Error: Invalid YAML generated for {user_id}")
+            print(f"Error details: {str(e)}")
 
-            with open(
-                f"profiles/{user_id}_raw_response.txt", "w", encoding="utf-8"
-            ) as f:
+            # Save the raw response for debugging
+            raw_path = f"data/backups/raw_responses/{user_id}_raw.txt"
+            os.makedirs(os.path.dirname(raw_path), exist_ok=True)
+            with open(raw_path, "w", encoding="utf-8") as f:
                 f.write(yaml_content)
+            print(f"   Raw response saved to {raw_path}")
 
             return False
 
     except Exception as e:
-        print(f"❌ Error calling Gemini API for {user_id}: {e}")
+        print(f"❌ Error calling Gemini API: {str(e)}")
         return False
 
 
 def main():
     """Process all prompt files and update profiles."""
     # Create directories if they don't exist
-    os.makedirs("profiles", exist_ok=True)
+    os.makedirs("data/profiles", exist_ok=True)
     os.makedirs(PROMPT_DIR, exist_ok=True)
+    os.makedirs("data/backups/profiles", exist_ok=True)
+    os.makedirs("data/backups/raw_responses", exist_ok=True)
 
     # Check if prompt directory exists
     if not os.path.exists(PROMPT_DIR):
@@ -162,7 +166,7 @@ def main():
     if success_count < len(prompt_files):
         print("Some profiles failed to update. Check the output above for details.")
         print("For any failures, you can:")
-        print("1. Check the raw responses in the profiles directory")
+        print("1. Check the raw responses in the data/backups/raw_responses directory")
         print(
             "2. Manually update the profiles with Google Gemini from the prompt files"
         )
