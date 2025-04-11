@@ -1,0 +1,414 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Supervisor Profile Schema",
+  "description": "Schema for research supervisor profiles in the Research Supervisor Matching project",
+  "type": "object",
+  "required": ["name", "position", "department", "university", "contact", "academic_background", "research_interests"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Full name of the supervisor, including title",
+      "minLength": 5
+    },
+    "position": {
+      "type": "string",
+      "description": "Current academic position",
+      "minLength": 3
+    },
+    "department": {
+      "type": "string",
+      "description": "Department name",
+      "minLength": 3
+    },
+    "university": {
+      "type": "string",
+      "description": "Full university name",
+      "minLength": 5
+    },
+    "contact": {
+      "type": "object",
+      "description": "Contact information",
+      "required": ["email"],
+      "properties": {
+        "email": {
+          "type": "string",
+          "description": "Institutional email address",
+          "format": "email"
+        },
+        "office": {
+          "type": "string",
+          "description": "Office location (building and room number)"
+        },
+        "phone": {
+          "type": "string",
+          "description": "Office phone number in international format",
+          "pattern": "^\\+[0-9]{1,3}-[0-9-]+$"
+        },
+        "website": {
+          "type": "string",
+          "description": "Personal or institutional website URL",
+          "format": "uri"
+        }
+      },
+      "additionalProperties": false
+    },
+    "academic_background": {
+      "type": "array",
+      "description": "List of academic degrees and qualifications",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["degree", "field", "institution", "year"],
+        "properties": {
+          "degree": {
+            "type": "string",
+            "description": "Degree type"
+          },
+          "field": {
+            "type": "string",
+            "description": "Field of study"
+          },
+          "institution": {
+            "type": "string",
+            "description": "Institution where degree was obtained"
+          },
+          "year": {
+            "type": "integer",
+            "description": "Year degree was conferred",
+            "minimum": 1900,
+            "maximum": 2100
+          },
+          "thesis": {
+            "type": "string",
+            "description": "Thesis or dissertation title"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "research_interests": {
+      "type": "array",
+      "description": "List of research topics and interests",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "expertise": {
+      "type": "array",
+      "description": "List of specific areas of expertise",
+      "items": {
+        "type": "string"
+      }
+    },
+    "key_achievements": {
+      "type": "array",
+      "description": "List of significant professional achievements",
+      "items": {
+        "type": "string"
+      }
+    },
+    "publications": {
+      "type": "array",
+      "description": "List of academic publications",
+      "items": {
+        "type": "object",
+        "required": ["title", "authors", "venue", "year"],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Full publication title"
+          },
+          "authors": {
+            "type": "string",
+            "description": "Comma-separated list of authors"
+          },
+          "venue": {
+            "type": "string",
+            "description": "Journal name, conference name, or book title"
+          },
+          "year": {
+            "type": "integer",
+            "description": "Publication year",
+            "minimum": 1900,
+            "maximum": 2100
+          },
+          "doi": {
+            "type": "string",
+            "description": "Digital Object Identifier",
+            "pattern": "^10\\.[0-9]{4,}(\\.?[0-9]*)/[a-zA-Z0-9\\-_.()/:]+$"
+          },
+          "citation": {
+            "type": "string",
+            "description": "Formatted citation"
+          },
+          "type": {
+            "type": "string",
+            "description": "Publication type",
+            "enum": ["journal", "conference", "book", "report", "other"]
+          },
+          "abstract": {
+            "type": "string",
+            "description": "Publication abstract"
+          },
+          "keywords": {
+            "type": "array",
+            "description": "Keywords associated with the publication",
+            "items": {
+              "type": "string"
+            }
+          },
+          "url": {
+            "type": "string",
+            "description": "URL to the publication",
+            "format": "uri"
+          },
+          "impact_factor": {
+            "type": "number",
+            "description": "Journal impact factor",
+            "minimum": 0
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "projects": {
+      "type": "array",
+      "description": "List of research projects",
+      "items": {
+        "type": "object",
+        "required": ["title"],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Project title"
+          },
+          "description": {
+            "type": "string",
+            "description": "Brief description of the project"
+          },
+          "role": {
+            "type": "string",
+            "description": "Supervisor's role in the project"
+          },
+          "funding": {
+            "type": "string",
+            "description": "Funding source and amount"
+          },
+          "duration": {
+            "type": "string",
+            "description": "Project duration",
+            "pattern": "^[0-9]{4} - ([0-9]{4}|Present)$"
+          },
+          "status": {
+            "type": "string",
+            "description": "Project status",
+            "enum": ["Completed", "Ongoing", "Planned"]
+          },
+          "collaborators": {
+            "type": "array",
+            "description": "List of collaborating researchers or institutions",
+            "items": {
+              "type": "string"
+            }
+          },
+          "outcomes": {
+            "type": "array",
+            "description": "List of project outcomes",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "supervised_students": {
+      "type": "object",
+      "description": "Information about supervised students",
+      "properties": {
+        "phd": {
+          "type": "array",
+          "description": "List of Ph.D. students supervised",
+          "items": {
+            "type": "object",
+            "required": ["name"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Student's name"
+              },
+              "thesis": {
+                "type": "string",
+                "description": "Thesis title"
+              },
+              "year": {
+                "type": "integer",
+                "description": "Year of completion or expected completion",
+                "minimum": 1900,
+                "maximum": 2100
+              },
+              "status": {
+                "type": "string",
+                "description": "Status of supervision",
+                "enum": ["Completed", "Ongoing"]
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "masters": {
+          "type": "array",
+          "description": "List of Master's students supervised",
+          "items": {
+            "type": "object",
+            "required": ["name"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Student's name"
+              },
+              "thesis": {
+                "type": "string",
+                "description": "Thesis title"
+              },
+              "year": {
+                "type": "integer",
+                "description": "Year of completion or expected completion",
+                "minimum": 1900,
+                "maximum": 2100
+              },
+              "status": {
+                "type": "string",
+                "description": "Status of supervision",
+                "enum": ["Completed", "Ongoing"]
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "undergraduate": {
+          "type": "array",
+          "description": "List of undergraduate students supervised",
+          "items": {
+            "type": "object",
+            "required": ["name"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Student's name"
+              },
+              "project": {
+                "type": "string",
+                "description": "Project title"
+              },
+              "year": {
+                "type": "integer",
+                "description": "Year of completion",
+                "minimum": 1900,
+                "maximum": 2100
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "roles": {
+      "type": "array",
+      "description": "Academic and administrative roles",
+      "items": {
+        "type": "object",
+        "required": ["title", "organization"],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Role title"
+          },
+          "organization": {
+            "type": "string",
+            "description": "Organization name"
+          },
+          "duration": {
+            "type": "string",
+            "description": "Duration of the role",
+            "pattern": "^[0-9]{4} - ([0-9]{4}|Present)$"
+          },
+          "description": {
+            "type": "string",
+            "description": "Brief description of responsibilities"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "professional_memberships": {
+      "type": "array",
+      "description": "Professional organization memberships",
+      "items": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Organization name"
+          },
+          "role": {
+            "type": "string",
+            "description": "Role within the organization"
+          },
+          "duration": {
+            "type": "string",
+            "description": "Duration of membership",
+            "pattern": "^[0-9]{4} - ([0-9]{4}|Present)$"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "profile_links": {
+      "type": "object",
+      "description": "Links to academic profiles on external platforms",
+      "properties": {
+        "google_scholar": {
+          "type": "string",
+          "description": "URL to Google Scholar profile",
+          "format": "uri"
+        },
+        "orcid": {
+          "type": "string",
+          "description": "URL to ORCID profile",
+          "format": "uri"
+        },
+        "scopus": {
+          "type": "string",
+          "description": "URL to Scopus author profile",
+          "format": "uri"
+        },
+        "researchgate": {
+          "type": "string",
+          "description": "URL to ResearchGate profile",
+          "format": "uri"
+        },
+        "linkedin": {
+          "type": "string",
+          "description": "URL to LinkedIn profile",
+          "format": "uri"
+        },
+        "dblp": {
+          "type": "string",
+          "description": "URL to DBLP profile",
+          "format": "uri"
+        },
+        "academia": {
+          "type": "string",
+          "description": "URL to Academia.edu profile",
+          "format": "uri"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+} 
