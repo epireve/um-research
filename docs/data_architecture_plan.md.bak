@@ -1,0 +1,332 @@
+# Data Architecture Plan for Research Supervisor Matching
+
+## Executive Summary
+
+This document outlines a comprehensive data architecture strategy for scaling the Research Supervisor Matching system from its current department-level implementation to a school-wide solution. We propose transitioning from the current YAML-based storage to a hybrid architecture combining document database (MongoDB), vector embeddings, and optionally graph relationships to enable more sophisticated matching, incremental topic updates, and improved scalability.
+
+## Current Architecture Assessment
+
+### Current Implementation
+
+The Research Supervisor Matching project currently uses:
+- YAML files for profile storage in the `profiles/` directory
+- One file per supervisor with a comprehensive schema
+- Simple text-based matching for research interests and expertise
+- No specialized indexing for semantic similarity
+
+### Strengths of Current Approach
+- Human-readable format
+- Easy manual editing
+- Simple version control
+- Lightweight implementation
+- No database dependencies
+
+### Limitations for Scaling
+- Limited query capabilities for complex matching
+- No built-in indexing for efficient semantic searches
+- Difficult to represent relationships between entities
+- Challenging to update specific parts of profiles independently
+- Performance degradation with larger dataset size
+- Limited support for appending new research topics separately
+
+## Requirements Analysis
+
+### Functional Requirements
+1. Match students with supervisors based on research interests and expertise
+2. Support separate storage and updates of research topics
+3. Scale from department-level to school-wide implementation
+4. Maintain relationships between supervisors, topics, and publications
+5. Support semantic similarity searches for matching
+6. Provide efficient filtering and ranking capabilities
+
+### Technical Requirements
+1. Efficient storage and retrieval of profile data
+2. Vector-based semantic similarity matching
+3. Ability to update specific profile sections independently
+4. Support for complex queries across multiple dimensions
+5. Good developer experience for maintenance and updates
+6. Reasonable implementation complexity
+
+## Data Architecture Options
+
+We've evaluated the following architectural approaches:
+
+### Option 1: Enhanced YAML/JSON with Vector Search Library
+- Continue storing data in YAML/JSON files
+- Add vector embeddings generation for research interests
+- Use a vector search library (e.g., FAISS, Annoy) for similarity matching
+- **Pros**: Minimal changes to current structure, simpler implementation
+- **Cons**: Limited scalability, no native support for partial updates
+
+### Option 2: Document Database with Vector Capabilities
+- Migrate to MongoDB with vector search capabilities
+- Store supervisor profiles as JSON documents
+- Generate and store embeddings for research interests
+- **Pros**: Good balance of functionality and implementation complexity
+- **Cons**: Some overhead in migration, requires MongoDB setup
+
+### Option 3: Specialized Vector Database
+- Implement a dedicated vector database (e.g., Pinecone, Weaviate)
+- Store core profile data separately in MongoDB/PostgreSQL
+- **Pros**: Optimal performance for vector search, specialized features
+- **Cons**: Higher complexity, additional system to maintain
+
+### Option 4: Graph Database with Vector Capabilities
+- Implement a graph database (e.g., Neo4j)
+- Store relationships between supervisors, topics, publications
+- Add vector capabilities for similarity search
+- **Pros**: Rich relationship modeling, powerful query capabilities
+- **Cons**: Highest complexity, steeper learning curve
+
+## Recommended Approach: Hybrid Architecture (Option 2 with Extensions)
+
+We recommend implementing a hybrid architecture based on Option 2, with the following components:
+
+### 1. Document Database (MongoDB)
+- Store supervisor profiles as JSON documents
+- Support for partial updates (updating just research interests)
+- Collections:
+  - `supervisors`: Basic profile information
+  - `publications`: Linked to supervisors
+  - `researchTopics`: Independent collection of research topics
+
+### 2. Vector Embeddings Layer
+- Generate embeddings for research interests, expertise, and publication titles
+- Store embeddings within MongoDB using Atlas Vector Search
+- Enable semantic similarity search for student interests
+
+### 3. Optional Future Enhancement: Graph Relationships
+- If relationships become more important in the future, implement graph views or a dedicated graph database
+- This would enable network analysis and relationship-based recommendations
+
+## Implementation Plan
+
+### Phase 1: Data Model Design (2 weeks)
+1. Design MongoDB schema for supervisor profiles
+2. Define structure for separate research topics collection
+3. Create relationships between collections
+4. Document data access patterns and API requirements
+
+### Phase 2: Migration Framework (2 weeks)
+1. Develop script to convert YAML profiles to JSON
+2. Create MongoDB connection utilities
+3. Implement data validation and error handling
+4. Test migration with sample profiles
+
+### Phase 3: Vector Embedding Generation (2 weeks)
+1. Select embedding model (e.g., sentence-transformers or OpenAI embeddings)
+2. Create pipeline to generate embeddings for research interests
+3. Implement storage of embeddings in MongoDB
+4. Test vector similarity search functionality
+
+### Phase 4: API Development (3 weeks)
+1. Implement core data access functions
+2. Create API for profile retrieval and updates
+3. Develop semantic search endpoints
+4. Add authentication and authorization
+
+### Phase 5: Scaling and Optimization (2 weeks)
+1. Benchmark performance with larger dataset
+2. Implement indexing strategy for MongoDB
+3. Optimize vector search parameters
+4. Create monitoring and maintenance tools
+
+## Data Models
+
+### Supervisor Profile Schema
+```javascript
+{
+  "_id": "ObjectId",
+  "username": "tkchiew",
+  "name": "Dr. Chiam Yin Kia",
+  "position": "Associate Professor",
+  "department": "Software Engineering",
+  "school": "Computer Science",
+  "contact": {
+    "email": "tkchiew@um.edu.my",
+    "office": "A-7-12",
+    "phone": "+60379676339"
+  },
+  "academic_background": [
+    {
+      "degree": "Ph.D.",
+      "field": "Computer Science",
+      "institution": "University of New South Wales",
+      "year": 2012
+    }
+    // Additional degrees...
+  ],
+  "expertise": ["Software Engineering", "Quality Attributes"],
+  "publications": [
+    {
+      "publicationId": "ObjectId" // Reference to publications collection
+    }
+    // Additional publication references...
+  ],
+  "researchInterests": [
+    {
+      "topicId": "ObjectId" // Reference to researchTopics collection
+    }
+    // Additional research interest references...
+  ],
+  "vectorEmbeddings": {
+    "expertise": [0.1, 0.2, 0.3, ...], // Vector of size 1536
+    "researchInterests": [0.2, 0.1, 0.3, ...] // Vector of size 1536
+  }
+  // Other profile fields...
+}
+```
+
+### Research Topics Schema
+```javascript
+{
+  "_id": "ObjectId",
+  "name": "Machine Learning",
+  "description": "Application of ML techniques to software engineering problems",
+  "keywords": ["neural networks", "deep learning", "prediction models"],
+  "addedDate": "2023-06-15",
+  "source": "manual-update", // or "profile-extraction"
+  "supervisors": [
+    {
+      "supervisorId": "ObjectId", // Reference to supervisors collection
+      "strength": 0.85 // Optional association strength
+    }
+    // Additional supervisor references...
+  ],
+  "vectorEmbedding": [0.1, 0.2, 0.3, ...] // Vector of size 1536
+}
+```
+
+### Publications Schema
+```javascript
+{
+  "_id": "ObjectId",
+  "title": "Using Suffix Tree Clustering Method to Support The Planning Phase of Systematic Literature Review",
+  "authors": ["Luyi Feng", "Yin Kia Chiam", "Erma Rahayu Mohd Faizal Abdullah"],
+  "year": 2017,
+  "venue": "Malaysian Journal of Computer Science",
+  "volume": "30(4)",
+  "pages": "311-332",
+  "doi": "",
+  "abstract": "",
+  "supervisors": [
+    {
+      "supervisorId": "ObjectId" // Reference to supervisors collection
+    }
+    // Additional supervisor references...
+  ],
+  "vectorEmbedding": [0.1, 0.2, 0.3, ...] // Vector embedding of title and abstract
+}
+```
+
+## Vector Embedding Strategy
+
+For generating vector embeddings, we recommend:
+
+1. **Text Embedding Model**: OpenAI's text-embedding-3-small or text-embedding-3-large (1536 dimensions)
+2. **Text Preprocessing**:
+   - Combine research interests, expertise into a single text for embedding
+   - Preprocess by removing stopwords and normalizing text
+3. **Storage Strategy**:
+   - Store embeddings directly in the document for simplified retrieval
+   - Create vector indexes in MongoDB for efficient similarity search
+
+## Query Patterns
+
+### Semantic Search for Matching
+```javascript
+// Example: Finding supervisors with similar research interests to student query
+db.supervisors.aggregate([
+  {
+    $vectorSearch: {
+      queryVector: studentInterestEmbedding,
+      path: "vectorEmbeddings.researchInterests",
+      numCandidates: 100,
+      limit: 10,
+      index: "research_interests_vector_index"
+    }
+  },
+  {
+    $project: {
+      name: 1,
+      position: 1,
+      department: 1,
+      score: { $meta: "vectorSearchScore" }
+    }
+  }
+])
+```
+
+### Topic-Based Updates
+```javascript
+// Example: Adding a new research topic to a supervisor
+db.researchTopics.insertOne({
+  name: "Quantum Computing",
+  description: "Application of quantum principles to computing problems",
+  keywords: ["quantum gates", "qubits", "quantum algorithms"],
+  addedDate: new Date(),
+  source: "manual-update",
+  supervisors: [{ supervisorId: supervisorObjectId }],
+  vectorEmbedding: quantumComputingEmbedding
+})
+```
+
+## Migration Strategy
+
+1. **Preparation**:
+   - Audit existing YAML files for completeness and consistency
+   - Define mapping between YAML structure and MongoDB schema
+
+2. **Conversion Process**:
+   - Convert YAML to JSON structure
+   - Generate embeddings for text fields
+   - Split into appropriate collections (supervisors, publications, topics)
+
+3. **Validation**:
+   - Verify data integrity after migration
+   - Test queries to ensure expected results
+   - Compare with original YAML-based system
+
+## Performance Considerations
+
+1. **Indexing Strategy**:
+   - Create vector indexes for research interests and expertise
+   - Standard indexes for regular fields used in filtering
+   - Compound indexes for common query patterns
+
+2. **Query Optimization**:
+   - Use pre-filtering to limit vector search scope
+   - Implement caching for common queries
+   - Batch processing for large data operations
+
+3. **Scaling Approach**:
+   - Start with MongoDB Atlas shared instance
+   - Scale vertically for initial growth
+   - Consider sharding for very large datasets (school-wide)
+
+## Conclusion
+
+The proposed hybrid architecture provides a scalable, flexible foundation for the Research Supervisor Matching system. By combining document storage with vector embeddings, we can support both the current matching requirements and future enhancements like independent topic updates and school-wide scaling.
+
+This approach specifically addresses:
+1. The need for efficient semantic matching of research interests
+2. The ability to append and update research topics independently
+3. Scaling beyond the Software Engineering department to the entire School of Computer Science
+4. Maintaining good development experience and reasonable implementation complexity
+
+## Next Steps
+
+1. Proof of concept implementation
+   - Convert 5 sample profiles to MongoDB
+   - Generate embeddings for research interests
+   - Test basic similarity matching
+
+2. Benchmark performance against current implementation
+   - Query speed
+   - Match quality
+   - Update efficiency
+
+3. Full implementation planning
+   - Server infrastructure requirements
+   - Migration timeline
+   - Development resource allocation

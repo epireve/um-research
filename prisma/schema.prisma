@@ -1,0 +1,66 @@
+// This is the Prisma schema file for the Research Supervisor Matching system
+// It defines the database schema using Prisma ORM with pgvector support
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  extensions = [vector]
+}
+
+model Supervisor {
+  id            String   @id
+  name          String
+  position      String
+  department    String
+  email         String
+  profileData   Json     @map("profile_data")
+  lastUpdated   DateTime @default(now()) @map("last_updated")
+  
+  // Relations
+  researchInterests ResearchInterest[]
+  embeddings        SupervisorEmbedding[]
+
+  @@map("supervisors")
+}
+
+model ResearchInterest {
+  id           Int      @id @default(autoincrement())
+  supervisorId String   @map("supervisor_id")
+  interest     String
+  // Note: embedding vectors are handled as raw SQL because Prisma doesn't fully support pgvector
+  createdAt    DateTime @default(now()) @map("created_at")
+  
+  // Relations
+  supervisor   Supervisor @relation(fields: [supervisorId], references: [id], onDelete: Cascade)
+
+  @@map("research_interests")
+}
+
+model SupervisorEmbedding {
+  id            Int      @id @default(autoincrement())
+  supervisorId  String   @map("supervisor_id")
+  embeddingType String   @map("embedding_type")
+  // Note: embedding vectors are handled as raw SQL because Prisma doesn't fully support pgvector
+  createdAt     DateTime @default(now()) @map("created_at")
+  
+  // Relations
+  supervisor    Supervisor @relation(fields: [supervisorId], references: [id], onDelete: Cascade)
+  
+  @@unique([supervisorId, embeddingType])
+  @@map("supervisor_embeddings")
+}
+
+model EmbeddingCache {
+  textHash   String   @id @map("text_hash")
+  text       String   @db.VarChar(1000)
+  // Note: embedding vectors are handled as raw SQL because Prisma doesn't fully support pgvector
+  createdAt  DateTime @default(now()) @map("created_at")
+  lastUsed   DateTime @default(now()) @updatedAt @map("last_used")
+
+  @@map("embedding_cache")
+} 

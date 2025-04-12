@@ -1,25 +1,31 @@
 {
-  "name": "um-research-supervisor-matching",
-  "version": "0.1.0",
-  "private": true,
+  "name": "research-supervisor-match",
+  "version": "1.0.0",
+  "description": "A system to match graduate students with research supervisors based on research interests",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "setup-db": "node scripts/setup-db.js",
+    "test-embedding": "node scripts/generate-embeddings.js",
+    "import-profiles": "node scripts/import-profiles.js"
   },
+  "keywords": [
+    "research",
+    "supervisor",
+    "matching",
+    "vector",
+    "embeddings",
+    "pgvector",
+    "prisma"
+  ],
+  "author": "",
+  "license": "MIT",
   "dependencies": {
-    "next": "13.4.19",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "@prisma/client": "^6.6.0",
+    "axios": "^1.8.4",
+    "dotenv": "^16.4.5",
+    "js-yaml": "^4.1.0",
+    "pg": "^8.14.1"
   },
   "devDependencies": {
-    "@tailwindcss/forms": "^0.5.4",
-    "autoprefixer": "^10.4.14",
-    "browserslist": "^4.24.4",
-    "eslint": "8.46.0",
-    "eslint-config-next": "13.4.19",
-    "postcss": "^8.4.27",
-    "tailwindcss": "^3.3.3"
+    "prisma": "^6.6.0"
   }
 }

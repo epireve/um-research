@@ -1,70 +1,92 @@
-# UM Research Supervisor Matching
+# Research Supervisor Matching System
 
-A web application to help students find the perfect research supervisor from the University of Malaya's Software Engineering Department.
+This system helps graduate students find suitable research supervisors based on their research interests using vector embeddings and semantic search.
 
 ## Features
 
-- Search for supervisors by name, expertise, or research interests
-- Filter by research areas
-- View detailed supervisor profiles including contact information, research interests, and publications
-- Responsive design for desktop and mobile devices
+- Vector-based similarity search for matching research interests
+- Integration with LM Studio for generating embeddings locally
+- PostgreSQL with pgvector for efficient vector storage and search
+- Prisma ORM for type-safe database operations
 
-## Tech Stack
+## Setup Instructions
 
-- **Frontend**: Next.js 13 (App Router), React, Tailwind CSS
-- **Styling**: Tailwind CSS with custom components
-- **Data**: YAML-based profiles with potential for API integration
+### 1. Prerequisites
 
-## Getting Started
+- Node.js 16+
+- PostgreSQL 14+ with pgvector extension installed
+- LM Studio desktop application
 
-### Prerequisites
+### 2. Database Setup
 
-- Node.js 16+ and npm/yarn
+```bash
+# Install pgvector extension if not already installed
+brew install pgvector
 
-### Installation
+# Create database
+createdb research_supervisor_match
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/um-research-supervisor-matching.git
-   cd um-research-supervisor-matching
-   ```
+# Set up database schema and verify connection
+npm run setup-db
+```
 
-2. Install dependencies:
-   ```bash
-   npm install
-   # or
-   yarn install
-   ```
+### 3. LM Studio Setup
 
-3. Run the development server:
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   ```
+1. Download and install LM Studio from [lmstudio.ai](https://lmstudio.ai/)
+2. Launch LM Studio
+3. Go to the "Local Server" tab
+4. Download an embedding model (recommended: text-embedding-3-small or similar)
+5. Start the server with the embedding model loaded
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
+### 4. Import Profiles
 
-## Project Structure
+Make sure your profiles are in YAML format in the `profiles` directory, then:
 
-- `/app` - Main application components and pages (Next.js App Router)
-- `/app/components` - Reusable React components
-- `/app/globals.css` - Global styles and Tailwind CSS imports
-- `/profiles` - YAML files containing supervisor profile data
+```bash
+# Test the embedding API
+npm run test-embedding
 
-## Contributing
+# Import profiles and generate embeddings
+npm run import-profiles
+```
 
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/your-feature-name`
-3. Commit your changes: `git commit -m 'Add some feature'`
-4. Push to the branch: `git push origin feature/your-feature-name`
-5. Submit a pull request
+## Database Schema
+
+The system uses the following tables:
+
+- `supervisors`: Basic information about each supervisor
+- `research_interests`: Individual research interests with vector embeddings
+- `supervisor_embeddings`: Aggregated embeddings for various aspects (research, expertise, publications)
+- `embedding_cache`: Cache for generated embeddings to improve performance
+
+## Command Line Tools
+
+This package includes several command-line tools:
+
+- `npm run setup-db`: Set up the database schema and test connection
+- `npm run test-embedding`: Test connection to LM Studio and embedding generation
+- `npm run import-profiles`: Import supervisor profiles and generate embeddings
+
+## Troubleshooting
+
+### LM Studio Connection Issues
+
+If you have trouble connecting to LM Studio:
+
+1. Ensure LM Studio is running and the server is started
+2. Check that an embedding model is loaded
+3. Verify the API URL is correct (default: http://localhost:1234/v1)
+4. Check the LM_STUDIO_API_URL in your .env file
+
+### Database Connection Issues
+
+If you have trouble connecting to PostgreSQL:
+
+1. Ensure PostgreSQL is running
+2. Check your DATABASE_URL in the .env file
+3. Verify that the pgvector extension is installed
+4. Ensure your user has access to the database
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgements
-
-- University of Malaya Software Engineering Department
-- All the faculty members who contributed their profiles 
+MIT 
