@@ -4,10 +4,10 @@ This guide explains how to access and work with supervisor profile data in the R
 
 ## Profile Storage
 
-Supervisor profiles are stored as YAML files in the `profiles/` directory, with each file named after the supervisor's ID (typically their username or a unique identifier):
+Supervisor profiles are stored as YAML files in the `data/profiles/` directory, with each file named after the supervisor's ID (typically their username or a unique identifier):
 
 ```
-profiles/
+data/profiles/
 ├── asmiza.yaml
 ├── hazimhanif.yaml
 ├── nazean.yaml
@@ -28,7 +28,7 @@ For simple use cases, you can read profile files directly using standard YAML li
 import yaml
 
 # Load a single profile
-with open('profiles/sitihafizah.yaml', 'r', encoding='utf-8') as file:
+with open('data/profiles/sitihafizah.yaml', 'r', encoding='utf-8') as file:
     profile = yaml.safe_load(file)
     
 # Access profile data
@@ -48,7 +48,7 @@ import glob
 
 def load_all_profiles():
     profiles = {}
-    for profile_path in glob.glob('profiles/*.yaml'):
+    for profile_path in glob.glob('data/profiles/*.yaml'):
         user_id = os.path.basename(profile_path).replace('.yaml', '')
         with open(profile_path, 'r', encoding='utf-8') as file:
             profiles[user_id] = yaml.safe_load(file)
