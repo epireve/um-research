@@ -26,7 +26,7 @@ class UMExpertProfileScraper:
     def __init__(self):
         """Initialize the profile scraper."""
         self.base_url = "https://umexpert.um.edu.my"
-        self.profiles_dir = Path("profiles")
+        self.profiles_dir = Path("data/profiles")
         self.source_dir = Path("source")
 
         # Create source directory if it doesn't exist
